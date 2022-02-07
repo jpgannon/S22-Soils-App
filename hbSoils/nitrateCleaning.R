@@ -4,7 +4,7 @@ library(lubridate)
 
 
 #Load in dataset
-nitrateData <- read.csv("data_raw/HBF Nitrate.csv")
+nitrateData <- read_csv("hbSoils/data_raw/HBF Nitrate.csv")
 
 
 #Select necessary columns
@@ -18,3 +18,7 @@ cleanData <- cleanData %>% mutate(timeSeries = mdy_hm(Date.Time.EST)) %>%
 
 #test plot for data
 ggplot(cleanData, aes(x = timeSeries, y = NO3_corrected_mgL)) + geom_line()
+
+
+
+
