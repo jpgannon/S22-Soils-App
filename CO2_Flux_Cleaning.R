@@ -20,7 +20,7 @@ ggplot(co2_flux_all, aes(x = timeSeries)) +
   geom_line(aes(y = CO2_Flux_3), color = "red") +
   geom_line(aes(y = nee.int), color = "green") +
   xlab("Date") +
-  ggtitle("CO2 Flux over time") + 
+  ggtitle("All Measured CO2 Flux over time") + 
   ylab("CO2 Flux (micromoles CO2 / meter squared / second)") +
   theme_classic()
   
@@ -32,7 +32,7 @@ co2_flux_1 <- data %>%
 ggplot(co2_flux_1, aes(x = timeSeries)) +
   geom_line(aes(y = CO2_Flux_1), color = "black") +
   xlab("Date") +
-  ggtitle("CO2 Flux over time") + 
+  ggtitle("All Calculated CO2 Flux over time") + 
   ylab("CO2 Flux (micromoles CO2 / meter squared / second)") +
   theme_classic()
 
@@ -44,7 +44,7 @@ co2_flux_2 <- data %>%
 ggplot(co2_flux_2, aes(x = timeSeries)) +
   geom_line(aes(y = CO2_Flux_2), color = "black") +
   xlab("Date") +
-  ggtitle("CO2 Flux over time") + 
+  ggtitle("CO2 Flux over time (Passes First QA)") + 
   ylab("CO2 Flux (micromoles CO2 / meter squared / second)") +
   theme_classic()
 
@@ -56,19 +56,19 @@ co2_flux_3 <- data %>%
 ggplot(co2_flux_3, aes(x = timeSeries)) +
   geom_line(aes(y = CO2_Flux_3), color = "black") +
   xlab("Date") +
-  ggtitle("CO2 Flux over time") + 
+  ggtitle("CO2 Flux over time (Passes Second QA)") + 
   ylab("CO2 Flux (micromoles CO2 / meter squared / second)") +
   theme_classic()
 
-co2_flux_nee <- data %>% 
+co2_flux_int <- data %>% 
   select(TIMESTAMP,nee.int) %>% 
   mutate(timeSeries = ymd_hms(TIMESTAMP)) %>% 
   select(timeSeries, nee.int)
 
-ggplot(co2_flux_nee, aes(x = timeSeries)) +
+ggplot(co2_flux_int, aes(x = timeSeries)) +
   geom_line(aes(y = nee.int), color = "black") +
   xlab("Date") +
-  ggtitle("CO2 Flux over time") + 
+  ggtitle("Interpolated CO2 Flux over time") + 
   ylab("CO2 Flux (micromoles CO2 / meter squared / second)") +
   theme_classic()
 
