@@ -16,6 +16,7 @@ cleanFlurData <- cleanFlurData %>% mutate(timeSeries = mdy_hm(Date.Time.EST)) %>
 
 #Test GGPlot
 ggplot(cleanFlurData, aes(timeSeries, FDOM_corrected_QSU)) + geom_line() +
-  theme_classic()
+  theme_classic() + labs(title = "Fluorescent Dissolved Organic Matter Over time",
+                         x = "Date", y = "Fluorescent dissolved organic matter per Quinine Sulfate Unit (QSU)")
 
 
