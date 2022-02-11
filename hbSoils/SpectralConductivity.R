@@ -19,4 +19,5 @@ cleanSpectral <- cleanSpectral %>% mutate(timeSeries = mdy_hm(Date.Time.EST)) %>
 
 
 #Test Plot
-ggplot(cleanSpectral, aes(x=timeSeries, y = SpConductivity)) + geom_line()
+ggplot(cleanSpectral, aes(x=timeSeries, y = SpConductivity)) + geom_line() + theme_classic() +
+  labs(title = "Spectral Conductivity over time", x = "Date", y = "Spectral conductivity")
