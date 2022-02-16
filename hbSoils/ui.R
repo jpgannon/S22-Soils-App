@@ -10,25 +10,30 @@
 
 library(shiny)
 
-# Define UI for application that draws a histogram
+
 shinyUI(fluidPage(
 
     # Application title
-    titlePanel("Old Faithful Geyser Data"),
+    titlePanel("Data Vizualization Of Hubbard Brook (Using Tabsets)"),
 
     # Sidebar with a slider input for number of bins
     sidebarLayout(
         sidebarPanel(
-            sliderInput("bins",
-                        "Number of bins:",
-                        min = 1,
-                        max = 50,
-                        value = 30)
+            dateRangeInput("dateRange", "Date Range for Analysis",
+                           start = "2012-11-1",
+                           end = "2013-11-1"),
+            varSelectInput("selection", "Column Name:", mtcars)
         ),
+       
 
+        
+        
+        
+        
         # Show a plot of the generated distribution
         mainPanel(
-            plotOutput("distPlot")
+            plotOutput("timePlot"),
+            textOutput("testText")
         )
     )
 ))
