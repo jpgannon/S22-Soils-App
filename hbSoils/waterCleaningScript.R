@@ -55,11 +55,59 @@ clean_fluorescent_data <- fluorescentDataRaw %>% mutate(date = mdy_hm(Date.Time.
 clean_discharge_data <- dischargeDataRaw %>% mutate(date = mdy_hm(Date.Time.EST)) %>%
   select(date, Q_Ls)
 
+##Create one dataframe for all by date
 
+allCleanData <- inner_join(clean_fluorescent_data, clean_discharge_data)
 
 
 
 ###TESTING ENVIRONMENT FOR GGPLOTS###
+
+#Start/End Dates for graphs
+startDate <- "2012-11-1"
+endDate <- "2014-11-1"
+
+#GGPlot for discharge (TimeSeries)
+
+dischargeTimePlot <- ggplot(clean_discharge_data, aes(as.Date(date), Q_Ls)) +
+  theme_classic() + geom_line() + scale_x_date(limits = as.Date(c(startDate, endDate))) +
+  labs(title ="Water discharge over Time", x = "Time", y = "Discharge") + geom_smooth()
+
+#GGplot for fluorescence (TimeSeries)
+
+fluorescenseTimePlot <- ggplot(clean_fluorescent_data, aes(as.Date(date), FDOM_corrected_QSU)) +
+  theme_classic() + geom_line() + scale_x_date(limits = as.Date(c(startDate, endDate))) +
+  labs(title = "Fluorescence data over Time", x = "Time", y = "Fluorescense data") +
+  geom_smooth()
+
+#GGPlot for nitrate (TimeSeries)
+
+nitrateTimePlot <- ggplot(clean_nitrate_data, aes(as.Date(date), NO3_corrected_mgL)) +
+  theme_classic() + geom_line() + scale_x_date(limits = as.Date(c(startDate, endDate))) +
+  labs(title = "Nitrate data over Time", x = "Time", y = "Nitrate") + geom_smooth()
+
+#GGPlot for specific conductivity (TimeSeries)
+
+conductivityTimePlot <- ggplot(clean_spectral_data, aes(as.Date(date), SpConductivity)) +
+  theme_classic() + geom_line() + scale_x_date(limits = as.Date(c(startDate, endDate))) +
+  labs(title = "Specific Conductivity over Time", x = "Time", y = "Specific Conductivity") +
+  geom_smooth()
+
+#GGPlot for temperature (TimeSeries)
+
+temperatureTimePlot <- ggplot(clean_temperature_data, aes(as.Date(date), TempC)) +
+  theme_bw() + geom_line() + scale_x_date(limits = as.Date(c(startDate, endDate))) + 
+  labs(title = "Temperature over Time", x = "Time", y = "Temperature") + geom_smooth()
+
+
+###END TIME PLOTS###
+
+
+###Bi-Variate Plots
+
+
+
+
 
 
 
