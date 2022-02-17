@@ -55,12 +55,14 @@ clean_fluorescent_data <- fluorescentDataRaw %>% mutate(date = mdy_hm(Date.Time.
 clean_discharge_data <- dischargeDataRaw %>% mutate(date = mdy_hm(Date.Time.EST)) %>%
   select(date, Q_Ls)
 
-##Create one dataframe for all by date
+##Create one dataframe for all by date##
 
+###MERGE ALL CLEAN SPECIFIC DATASETS
 clean_df_list <- list(clean_temperature_data, clean_spectral_data, clean_nitrate_data,
                       clean_fluorescent_data, clean_discharge_data)
 
 
+#full join all datasets by date column
 allCleanData <- clean_df_list %>% reduce(full_join, by = "date")
 
 

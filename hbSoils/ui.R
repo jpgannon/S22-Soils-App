@@ -25,11 +25,7 @@ shinyUI(fluidPage(
             varSelectInput("selection", "Column Name:", allCleanData)
         ),
        
-
-        
-        
-        
-        
+   
         # Show a plot of the generated distribution
         mainPanel(
             plotOutput("timePlot"),
