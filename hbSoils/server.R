@@ -11,11 +11,9 @@ library(ggplot2)
 library(tidyverse)
 
 
-temperatureRawData <- read_csv("hbSoils/data_raw/HBF Temperature.csv")
+setwd("~/S22-Soils-App/")
 
-
-clean_temperature_data <- temperatureRawData %>% mutate(date = mdy_hm(Date.Time.EST)) %>%
-  select(date, TempC)
+source("hbSoils/waterCleaningScript.R")
 
 
 # Define server logic required to draw a histogram
@@ -23,8 +21,8 @@ shinyServer(function(input, output) {
 
     
     output$timePlot <- renderPlot({
-      ggplot(clean_temperature_data, aes(x = date, y = TempC)) +
-        theme_classic() + geom_smooth()}, res = 98)
+      ggplot(clean_temperature_data, aes(x = date, y = input$selection)) +
+        theme_classic() + geom_line()}, res = 80)
     
     output$testText <- renderText({
       

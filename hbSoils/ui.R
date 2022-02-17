@@ -22,7 +22,7 @@ shinyUI(fluidPage(
             dateRangeInput("dateRange", "Date Range for Analysis",
                            start = "2012-11-1",
                            end = "2013-11-1"),
-            varSelectInput("selection", "Column Name:", mtcars)
+            varSelectInput("selection", "Column Name:", allCleanData)
         ),
        
 
@@ -33,7 +33,6 @@ shinyUI(fluidPage(
         # Show a plot of the generated distribution
         mainPanel(
             plotOutput("timePlot"),
-            textOutput("testText")
         )
     )
 ))

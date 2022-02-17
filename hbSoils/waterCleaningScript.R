@@ -57,7 +57,12 @@ clean_discharge_data <- dischargeDataRaw %>% mutate(date = mdy_hm(Date.Time.EST)
 
 ##Create one dataframe for all by date
 
-allCleanData <- inner_join(clean_fluorescent_data, clean_discharge_data)
+clean_df_list <- list(clean_temperature_data, clean_spectral_data, clean_nitrate_data,
+                      clean_fluorescent_data, clean_discharge_data)
+
+
+allCleanData <- clean_df_list %>% reduce(full_join, by = "date")
+
 
 
 
