@@ -9,6 +9,7 @@
 library(lubridate)
 library(ggplot2)
 library(tidyverse)
+library(tibbletime)
 
 
 setwd("~/S22-Soils-App/")
@@ -20,12 +21,21 @@ source("hbSoils/waterCleaningScript.R")
 shinyServer(function(input, output) {
 
     
+    
+  
+  
     output$timePlot <- renderPlot({
-      ggplot(clean_temperature_data, aes(x = date, y = input$selection)) +
+      
+      #Set Filtered Date
+      filtered_date <- filter_time(allCleanData, input$dateRange[1] ~ input$dateRange[2])
+      
+      
+      
+      ggplot(allCleanData, aes(x = filtered_date, !!input$selection)) +
         theme_classic() + geom_line()}, res = 80)
     
     output$testText <- renderText({
-      
+      paste0("Date Range is ", input$dateRange[1])
     })
     
 
