@@ -29,8 +29,12 @@ shinyServer(function(input, output) {
     #Output plot for any selected variable
     output$timePlot <- renderPlot({
       ggplot(data(), aes(x = date, !!input$selection)) +
+<<<<<<< HEAD
         theme_classic() + geom_line() + labs(x = "Time",
                                              title = "Specified Variable over time")}, res = 80)
+=======
+        theme_classic() + geom_line()}, res = 80)
+>>>>>>> 78ab1fe216f2cc4dcae7a87d9a17621669d48a31
     
     #Output text for DEBUGGING and seeing specific date range
     output$testText <- renderText({
