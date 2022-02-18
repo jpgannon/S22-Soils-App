@@ -9,31 +9,41 @@
 #This is a test.
 
 library(shiny)
+library(lubridate)
+library(ggplot2)
+library(tidyverse)
 
+setwd("~/S22-Soils-App/")
+source("hbSoils/waterCleaningScript.R")
 
 shinyUI(fluidPage(
 
     # Application title
-    titlePanel("Data Vizualization Of Hubbard Brook (Using Tabsets)"),
+    titlePanel("Data Vizualization Of Hubbard Brook"),
 
-    # Sidebar with a slider input for number of bins
+    # Sidebar Panel responsible for selecting date Range and Variable
     sidebarLayout(
         sidebarPanel(
-            dateRangeInput("dateRange", "Date Range for Analysis",
+            dateRangeInput("dateRange", "Desired Date Range",
                            start = "2012-11-1",
                            end = "2013-11-1"),
-            varSelectInput("selection", "Column Name:", mtcars)
+            #Select only columns that we need for variables to look at
+            varSelectInput("selection", "Variable", allCleanData %>% select(TempC,
+                                                                            SpConductivity,
+                                                                            NO3_corrected_mgL,
+                                                                            FDOM_corrected_QSU,
+                                                                            Q_Ls
+                                                                            )),
+            checkboxInput("smoothOption", "Add smoothing lines", )
+            
         ),
        
-
-        
-        
-        
-        
-        # Show a plot of the generated distribution
+   
+        # Displays timeseries updatable graph and specific date range text
         mainPanel(
             plotOutput("timePlot"),
             textOutput("testText")
         )
     )
 ))
+
