@@ -9,12 +9,25 @@
 #This is a test.
 
 library(shiny)
+library(shinythemes)
+library(shinydashboard)
 
 
 shinyUI(fluidPage(
 
     # Application title
     titlePanel("Data Vizualization Of Hubbard Brook"),
+    
+    # Creates two tabs for timeseries & bivariate data
+    navbarPage("Type of Analysis", theme = shinytheme("flatly"),
+               tabPanel("Timeseries",
+                        h2("Timeseries Tab")
+               ),
+               tabPanel("Bivariate",
+                        h2("Bivariate Tab")
+               )
+    ),
+    
 
     # Sidebar Panel responsible for selecting date Range and Variable
     sidebarLayout(
