@@ -1,5 +1,5 @@
 library(dplyr)
-library(ggplot)
+library(ggplot2)
 library(tidyverse)
 library(car)
 library(TeachingDemos)
@@ -15,15 +15,15 @@ master_soil <- data %>%
          SiteAirTemp, ChamberTemp, SoilTemp1_Chamber,
          SoilTemp2_Chamber, SoilTemp3_Chamber,
          CO2_Flux_1, CO2_Flux_2, CO2_Flux_3, nee.int) %>% 
-  rename(VWC1_Chamber = Soil_Moisture_15cm,
-         VWC2_Chamber = Soil_Moisture_30cm,
-         VWC3_Chamber = Soil_Moisture_5cm,
-         SoilTemp1_Chamber = Soil_Temp_15cm,
-         SoilTemp2_Chamber = Soil_Temp_30cm,
-         SoilTemp3_Chamber = Soil_Temp_5cm,
-         ChamberTemp = Chamber_Temp,
-         SiteAirTemp = Air_Temp_150cm,
-         CO2_Flux_1 = CO2_Flux)
+  rename(Soil_Moisture_15cm = VWC1_Chamber,
+         Soil_Moisture_30cm = VWC2_Chamber,
+         Soil_Moisture_5cm = VWC3_Chamber,
+         Soil_Temp_15cm = SoilTemp1_Chamber,
+         Soil_Temp_30cm = SoilTemp2_Chamber,
+         Soil_Temp_5cm = SoilTemp3_Chamber,
+         Chamber_Temp = ChamberTemp,
+         Air_Temp_150cm = SiteAirTemp,
+         CO2_Flux = CO2_Flux_1)
 
 #All moisture Data
 moisture_all <- data %>% 
