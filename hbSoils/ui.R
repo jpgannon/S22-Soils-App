@@ -28,7 +28,9 @@ shinyUI(fluidPage(
                                                                             NO3_corrected_mgL,
                                                                             FDOM_corrected_QSU,
                                                                             Q_Ls
-                                                                            ))
+                                                                            )),
+            checkboxInput("smoothOption", "Add smoothing lines", )
+            
         ),
        
    
@@ -39,3 +41,4 @@ shinyUI(fluidPage(
         )
     )
 ))
+
