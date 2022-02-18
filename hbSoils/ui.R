@@ -29,7 +29,8 @@ shinyUI(fluidPage(
                                                                             FDOM_corrected_QSU,
                                                                             Q_Ls
                                                                             )),
-            checkboxInput("smoothOption", "Add smoothing lines", )
+            checkboxInput("smoothOption", "Add smoothing lines", ),
+            varSelectInput("dataChoice", "Specific Dataset", c("Test" = "Testing"))
             
         ),
        

@@ -1,11 +1,13 @@
 library(dplyr)
-library(ggplot)
+library(ggplot2)
 library(tidyverse)
 library(car)
 library(TeachingDemos)
-library(devtools)
 
+
+setwd("~/S22-Soils-App/hbSoils")
 data_raw <- read.csv("data_raw/Hubbard_Brook_CO2_Fluxes.csv")
+
 
 data <- data_raw[0:28669, ]
 ## data frame with all soil measurements
