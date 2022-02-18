@@ -6,14 +6,6 @@
 #
 #    http://shiny.rstudio.com/
 #
-library(lubridate)
-library(ggplot2)
-library(tidyverse)
-
-
-setwd("~/S22-Soils-App/")
-
-source("hbSoils/waterCleaningScript.R")
 
 
 # Define server logic required to draw a histogram

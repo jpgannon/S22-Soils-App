@@ -9,7 +9,12 @@
 #This is a test.
 
 library(shiny)
+library(lubridate)
+library(ggplot2)
+library(tidyverse)
 
+setwd("~/S22-Soils-App/")
+source("hbSoils/waterCleaningScript.R")
 
 shinyUI(fluidPage(
 
