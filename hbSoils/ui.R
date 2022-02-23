@@ -23,41 +23,44 @@ source("hbSoils/waterCleaningScript.R")
 
 
 shinyUI(fluidPage(
-
-    # Application title
-    titlePanel("Data Vizualization Of Hubbard Brook"),
-    
-    # Creates two tabs for timeseries & bivariate data
-    navbarPage("Type of Analysis", theme = shinytheme("flatly"),
-               tabPanel("Timeseries",
-                        h2("Timeseries Tab")
-               ),
-               tabPanel("Bivariate",
-                        h2("Bivariate Tab")
-               )
+  
+  # Application title
+  titlePanel("Data Vizualization Of Hubbard Brook"),
+  
+  # Creates two tabs for timeseries & bivariate data
+  navbarPage("Type of Analysis", theme = shinytheme("flatly"),
+             tabPanel("Bivariate",
+                        h2("Bivariate Tab"),
+             ),
+             navbarMenu("Timeseries",
+                        tabPanel("Soil Data",
+                                 h2("Soil Data")
+                        ),
+                                 tabPanel("Aquatic Data",
+                                          h2("Aquatic Data")
+                                 )
+             )),
+             
+  # Sidebar Panel responsible for selecting date Range and Variable
+  sidebarLayout(
+    sidebarPanel(
+      dateRangeInput("dateRange", "Desired Date Range",
+                     start = "2012-11-1",
+                     end = "2013-11-1"),
+      #Select only columns that we need for variables to look at
+      varSelectInput("selection", "Variable", allCleanData %>% select(TempC,
+                                                                      SpConductivity,
+                                                                      NO3_corrected_mgL,
+                                                                      FDOM_corrected_QSU,
+                                                                      Q_Ls
+      ))
     ),
     
-
-    # Sidebar Panel responsible for selecting date Range and Variable
-    sidebarLayout(
-        sidebarPanel(
-            dateRangeInput("dateRange", "Desired Date Range",
-                           start = "2012-11-1",
-                           end = "2013-11-1"),
-            #Select only columns that we need for variables to look at
-            varSelectInput("selection", "Variable", allCleanData %>% select(TempC,
-                                                                            SpConductivity,
-                                                                            NO3_corrected_mgL,
-                                                                            FDOM_corrected_QSU,
-                                                                            Q_Ls
-                                                                            ))
-        ),
-       
-   
-        # Displays timeseries updatable graph and specific date range text
-        mainPanel(
-            plotOutput("timePlot"),
-            textOutput("testText")
-        )
+    
+    # Displays timeseries updatable graph and specific date range text
+    mainPanel(
+      plotOutput("timePlot"),
+      textOutput("testText")
     )
+  )
 ))
