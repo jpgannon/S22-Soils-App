@@ -23,11 +23,16 @@ shinyServer(function(input, output) {
       ggplot(data(), aes(x = date, !!input$selection)) +
         theme_classic() + geom_line() + labs(x = "Time",
                                              title = "Specified Variable over time")}, res = 80)
-
+    
+    #Output plot for second selected variable
+    output$timePlot2 <- renderPlot({
+      ggplot(data(), aes(x = date, !!input$selection2)) +
+        theme_classic() + geom_line() + labs(x = "Time",
+                                             title = "Specified Variable over time")}, res = 80)
     
     #Output text for DEBUGGING and seeing specific date range
     output$testText <- renderText({
-      paste0("Date Range is ", input$multiplots)
+      paste0("Date Range is ", input$dateRange)
     })
     
 

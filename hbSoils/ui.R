@@ -70,6 +70,10 @@ shinyUI(fluidPage(
         # Displays timeseries updatable graph and specific date range text
         mainPanel(
             plotOutput("timePlot"),
+            conditionalPanel(
+            condition = "input.multiplots == 1",
+            plotOutput("timePlot2")
+            ),
             textOutput("testText")
         )
     )
