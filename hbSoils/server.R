@@ -22,7 +22,8 @@ shinyServer(function(input, output) {
     output$timePlot <- renderPlot({
       ggplot(data(), aes(x = date, !!input$selection)) +
         theme_classic() + geom_line() + labs(x = "Time",
-                                             title = "Specified Variable over time")}, res = 80)
+                                             title = "Specified Variable over time") +
+        {if(input$smoothingOpt)geom_smooth()}}, res = 80)
 
     
     #Output text for DEBUGGING and seeing specific date range

@@ -25,7 +25,7 @@ source("hbSoils/waterCleaningScript.R")
 shinyUI(fluidPage(
     
     # Application title
-    titlePanel("Data Vizualization Of Hubbard Brook"),
+    titlePanel("Data Viz"),
     
     # Creates two tabs for timeseries & bivariate data
     navbarPage("Type of Analysis", theme = shinytheme("flatly"), position = "fixed-top",
@@ -54,6 +54,7 @@ shinyUI(fluidPage(
                                                                             FDOM_corrected_QSU,
                                                                             Q_Ls
             )),
+            checkboxInput("smoothingOpt", "Add smoothing Line",),
             conditionalPanel(
             condition = "input.multiplots == 1",
             varSelectInput("selection2", "Variable2", allCleanData %>% select(TempC,
