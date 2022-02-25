@@ -27,7 +27,7 @@ shinyServer(function(input, output) {
     
     #Output text for DEBUGGING and seeing specific date range
     output$testText <- renderText({
-      paste0("Date Range is ", input$dateRange)
+      paste0("Date Range is ", input$multiplots)
     })
     
 
