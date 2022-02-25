@@ -28,7 +28,7 @@ shinyUI(fluidPage(
   titlePanel("Data Vizualization Of Hubbard Brook"),
   
   # Creates two tabs for timeseries & bivariate data
-  navbarPage("Type of Analysis", theme = shinytheme("flatly"),
+  navbarPage("Type of Analysis", theme = shinytheme("flatly"), position = "fixed-top",
              tabPanel("Bivariate",
                         h2("Bivariate Tab"),
              ),
