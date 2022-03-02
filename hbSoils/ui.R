@@ -68,6 +68,8 @@ shinyUI(fluidPage(
                                                                                  Q_Ls)
             
             ),
+            #Configure if second plot is visible.
+            checkboxInput("multiplots", "Show Two Plots", FALSE),
             conditionalPanel(
             condition = "input.multiplots == 1",
             varSelectInput("selection2", "Variable 2", merged_clean_data %>% select(Soil_Moisture_5cm,
@@ -86,18 +88,66 @@ shinyUI(fluidPage(
                                                                                  NO3_corrected_mgL,
                                                                                  FDOM_corrected_QSU,
                                                                                  Q_Ls)
-                           )),
-            #Configure if second plot is visible.
-            checkboxInput("multiplots", "Show Multiple Plots", FALSE),
-        ),
+                           ),
+            #Configure if thirsd plot is visible.
+            checkboxInput("multiplots2", "Show Another Plot", FALSE),),
+        conditionalPanel(
+          condition = "input.multiplots2 == 1",
+          varSelectInput("selection3", "Variable 3", merged_clean_data %>% select(Soil_Moisture_5cm,
+                                                                                  Soil_Moisture_15cm,
+                                                                                  Soil_Moisture_30cm,
+                                                                                  Air_Temp_150cm,
+                                                                                  Chamber_Temp,
+                                                                                  Soil_Temp_5cm,
+                                                                                  Soil_Temp_15cm,
+                                                                                  Soil_Temp_30cm,
+                                                                                  CO2_Flux,
+                                                                                  CO2_Flux_2,
+                                                                                  CO2_Flux_3,
+                                                                                  nee.int,TempC,
+                                                                                  SpConductivity,
+                                                                                  NO3_corrected_mgL,
+                                                                                  FDOM_corrected_QSU,
+                                                                                  Q_Ls)
+          ),
+          #Configure if second plot is visible.
+          checkboxInput("multiplots3", "Show Another Plots", FALSE),),
+    conditionalPanel(
+      condition = "input.multiplots3 == 1",
+      varSelectInput("selection4", "Variable 4", merged_clean_data %>% select(Soil_Moisture_5cm,
+                                                                              Soil_Moisture_15cm,
+                                                                              Soil_Moisture_30cm,
+                                                                              Air_Temp_150cm,
+                                                                              Chamber_Temp,
+                                                                              Soil_Temp_5cm,
+                                                                              Soil_Temp_15cm,
+                                                                              Soil_Temp_30cm,
+                                                                              CO2_Flux,
+                                                                              CO2_Flux_2,
+                                                                              CO2_Flux_3,
+                                                                              nee.int,TempC,
+                                                                              SpConductivity,
+                                                                              NO3_corrected_mgL,
+                                                                              FDOM_corrected_QSU,
+                                                                              Q_Ls)
+      ),)
+),
         
         
         # Displays timeseries updatable graph and specific date range text
         mainPanel(
-            plotOutput("timePlot"),
+            plotOutput("timePlot", height = 275 ),
             conditionalPanel(
             condition = "input.multiplots == 1",
-            plotOutput("timePlot2")
+            plotOutput("timePlot2", height = 275 )
+            ),
+            conditionalPanel(
+              condition = "input.multiplots2 == 1",
+              plotOutput("timePlot3", height = 275)
+            ),
+            conditionalPanel(
+              condition = "input.multiplots3 == 1",
+              plotOutput("timePlot4", height = 275 )
             ),
             textOutput("testText")
         )

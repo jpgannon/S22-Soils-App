@@ -34,6 +34,15 @@ shinyServer(function(input, output) {
     output$timePlot2 <- renderPlot({
       ggplot(data(), aes(x = date, !!input$selection2)) +
         theme_classic() + geom_line() })
+    
+    #Output plot for third selected variable
+    output$timePlot3 <- renderPlot({
+      ggplot(data(), aes(x = date, !!input$selection3)) +
+        theme_classic() + geom_line() })
+    #Output plot for fourth selected variable
+    output$timePlot4 <- renderPlot({
+      ggplot(data(), aes(x = date, !!input$selection4)) +
+        theme_classic() + geom_line() })
 
     
     #Output text for DEBUGGING and seeing specific date range
