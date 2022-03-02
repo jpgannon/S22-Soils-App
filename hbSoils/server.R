@@ -18,7 +18,7 @@ shinyServer(function(input, output) {
     )  
     #Output multiple plots
     output$multiplot <- renderPlot({
-      ggplot(dara(), aes(x = date, !!input$selection)) +
+      ggplot(data(), aes(x = date, !!input$selection)) +
         theme_classic() + geom_line() + labs(x = "Time", 
                                              title = "")
     })
@@ -28,8 +28,12 @@ shinyServer(function(input, output) {
     output$timePlot <- renderPlot({
       
       ggplot(data(), aes(x = date, !!input$selection)) +
-        theme_classic() + geom_line() + labs(x = "Time",
-                                             title = "Specified Variable over time")}, res = 80)
+        theme_classic() + geom_line() 
+    })
+    #Output plot for second selected variable
+    output$timePlot2 <- renderPlot({
+      ggplot(data(), aes(x = date, !!input$selection2)) +
+        theme_classic() + geom_line() })
 
     
     #Output text for DEBUGGING and seeing specific date range

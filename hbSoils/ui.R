@@ -81,7 +81,11 @@ shinyUI(fluidPage(
                                                                                  CO2_Flux,
                                                                                  CO2_Flux_2,
                                                                                  CO2_Flux_3,
-                                                                                 nee.int)
+                                                                                 nee.int,TempC,
+                                                                                 SpConductivity,
+                                                                                 NO3_corrected_mgL,
+                                                                                 FDOM_corrected_QSU,
+                                                                                 Q_Ls)
                            )),
             #Configure if second plot is visible.
             checkboxInput("multiplots", "Show Multiple Plots", FALSE),
