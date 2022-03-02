@@ -20,7 +20,7 @@ library(tidyverse)
 
 setwd("~/S22-Soils-App/")
 
-source("hbSoils/waterCleaningScript.R")
+source("hbSoils/soilAquaticDataMerging.R")
 
 
 shinyUI(fluidPage(
@@ -47,22 +47,42 @@ shinyUI(fluidPage(
         sidebarPanel(
             dateRangeInput("dateRange", "Desired Date Range",
                            start = "2012-11-1",
-                           end = "2013-11-1"),
+                           end = "2015-11-1"),
             #Select only columns that we need for variables to look at
-            varSelectInput("selection", "Variable", allCleanData %>% select(TempC,
-                                                                            SpConductivity,
-                                                                            NO3_corrected_mgL,
-                                                                            FDOM_corrected_QSU,
-                                                                            Q_Ls
-            )),
+            varSelectInput("selection", "Variable", merged_clean_data %>% select(Soil_Moisture_5cm,
+                                                                                 Soil_Moisture_15cm,
+                                                                                 Soil_Moisture_30cm,
+                                                                                 Air_Temp_150cm,
+                                                                                 Chamber_Temp,
+                                                                                 Soil_Temp_5cm,
+                                                                                 Soil_Temp_15cm,
+                                                                                 Soil_Temp_30cm,
+                                                                                 CO2_Flux,
+                                                                                 CO2_Flux_2,
+                                                                                 CO2_Flux_3,
+                                                                                 nee.int, 
+                                                                                 TempC,
+                                                                                 SpConductivity,
+                                                                                 NO3_corrected_mgL,
+                                                                                 FDOM_corrected_QSU,
+                                                                                 Q_Ls)
+            
+            ),
             conditionalPanel(
             condition = "input.multiplots == 1",
-            varSelectInput("selection2", "Variable2", allCleanData %>% select(TempC,
-                                                                              SpConductivity,
-                                                                              NO3_corrected_mgL,
-                                                                              FDOM_corrected_QSU,
-                                                                              Q_Ls
-            ))),
+            varSelectInput("selection2", "Variable 2", merged_clean_data %>% select(Soil_Moisture_5cm,
+                                                                                 Soil_Moisture_15cm,
+                                                                                 Soil_Moisture_30cm,
+                                                                                 Air_Temp_150cm,
+                                                                                 Chamber_Temp,
+                                                                                 Soil_Temp_5cm,
+                                                                                 Soil_Temp_15cm,
+                                                                                 Soil_Temp_30cm,
+                                                                                 CO2_Flux,
+                                                                                 CO2_Flux_2,
+                                                                                 CO2_Flux_3,
+                                                                                 nee.int)
+                           )),
             #Configure if second plot is visible.
             checkboxInput("multiplots", "Show Multiple Plots", FALSE),
         ),
