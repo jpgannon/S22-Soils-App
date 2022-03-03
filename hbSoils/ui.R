@@ -136,18 +136,34 @@ shinyUI(fluidPage(
         
         # Displays timeseries updatable graph and specific date range text
         mainPanel(
-            plotOutput("timePlot", height = 275 ),
+            plotOutput("timePlot", height = 275,
+                       dblclick = "plot1_dblclick",
+                       brush = brushOpts(
+                           id = 'plot1_brush',
+                           resetOnNew = TRUE)),
             conditionalPanel(
             condition = "input.multiplots == 1",
-            plotOutput("timePlot2", height = 275 )
+            plotOutput("timePlot2", height = 275,
+                       dblclick = "plot1_dblclick",
+                       brush = brushOpts(
+                           id = "plot1_brush",
+                           resetOnNew = TRUE)),
             ),
             conditionalPanel(
               condition = "input.multiplots2 == 1",
-              plotOutput("timePlot3", height = 275)
+              plotOutput("timePlot3", height = 275,
+                         dblclick = "plot1_dblclick",
+                         brush = brushOpts(
+                             id = "plot1_brush",
+                             resetOnNew = TRUE)),
             ),
             conditionalPanel(
               condition = "input.multiplots3 == 1",
-              plotOutput("timePlot4", height = 275 )
+              plotOutput("timePlot4", height = 275,
+                         dblclick = "plot1_brush",
+                         brush = brushOpts(
+                             id = "plot1_brush",
+                             resetOnNew = TRUE)),
             ),
             textOutput("testText")
         )
