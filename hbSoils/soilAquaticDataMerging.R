@@ -104,6 +104,19 @@ merged_clean_data <- df_list_dropped_time %>% reduce(full_join, by = "date")
 
 merged_clean_data <- merged_clean_data %>% select(-c(timeSeries))
 
+merged_clean_data <- merged_clean_data %>% rename( Soil_Moisture_at_15cm = Soil_Moisture_15cm,
+                                                   Soil_Moisture_at_30cm = Soil_Moisture_30cm,
+                                                   Soil_Moisture_at_5cm = Soil_Moisture_5cm,
+                                                   Soil_Temp_at_15cm = Soil_Temp_15cm,
+                                                   Soil_Temp_at_30cm = Soil_Temp_30cm,
+                                                   Soil_Temp_at_5cm = Soil_Temp_5cm,
+                                                  Temp_of_Chamber = Chamber_Temp,
+                                                  Air_Temp_at_150cm = Air_Temp_150cm,
+                                                  CO2_Flux_Interpolated = nee.int,
+                                                  Temp_Celcius = TempC,
+                                                  Spectral_Conductivity = SpConductivity,
+                                                  )
+
 
 
 
