@@ -11,6 +11,12 @@
 # Define server logic required to draw a histogram
 shinyServer(function(input, output) {
 
+    #Set reactive date range.
+    ranges <- reactiveValues(x = c("2012-10-11", "2020-11-30"))
+  
+  
+  
+  
     #Reactive data for updating between certain dates
     data <- reactive(
       merged_clean_data %>% filter(between(date, as.POSIXct(input$dateRange[1]),
@@ -28,27 +34,54 @@ shinyServer(function(input, output) {
     output$timePlot <- renderPlot({
       
       ggplot(data(), aes(x = date, !!input$selection)) +
-        theme_classic() + geom_line() 
+        theme_classic() + geom_line() +
+        coord_cartesian(xlim = as.POSIXct(ranges$x, origin = "1970-01-01"), expand = FALSE)
     })
     #Output plot for second selected variable
     output$timePlot2 <- renderPlot({
       ggplot(data(), aes(x = date, !!input$selection2)) +
-        theme_classic() + geom_line() })
+        theme_classic() + geom_line() +
+        coord_cartesian(xlim = as.POSIXct(ranges$x, origin = "1970-01-01"), expand = FALSE)
+      })
     
     #Output plot for third selected variable
     output$timePlot3 <- renderPlot({
       ggplot(data(), aes(x = date, !!input$selection3)) +
-        theme_classic() + geom_line() })
+        theme_classic() + geom_line() +
+        coord_cartesian(xlim = as.POSIXct(ranges$x, origin = "1970-01-01"), expand = FALSE)
+      })
     #Output plot for fourth selected variable
     output$timePlot4 <- renderPlot({
       ggplot(data(), aes(x = date, !!input$selection4)) +
-        theme_classic() + geom_line() })
+        theme_classic() + geom_line() +
+        coord_cartesian(xlim = as.POSIXct(ranges$x, origin = "1970-01-01"), expand = FALSE)
+      })
 
     
     #Output text for DEBUGGING and seeing specific date range
     output$testText <- renderText({
       paste0("Date Range is ", input$dateRange)
     })
+    
+    
+    
+    
+    ##HANDLE BRUSHING
+    observeEvent(input$plot1_dblclick, {
+      brush = input$plot1_brush
+      
+      if(!is.null(brush)) {
+        ranges$x <- c(brush$xmin, brush$xmax)
+      }
+      
+      else {
+        ranges$x <- c(input$dateRange[1], input$dateRange[2])
+      }
+    }
+    )
+    
+    
+    
     
 
 })
