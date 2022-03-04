@@ -160,7 +160,7 @@ shinyUI(fluidPage(
             conditionalPanel(
               condition = "input.multiplots3 == 1",
               plotOutput("timePlot4", height = 275,
-                         dblclick = "plot1_brush",
+                         dblclick = "plot1_dblclick",
                          brush = brushOpts(
                              id = "plot1_brush",
                              resetOnNew = TRUE)),
