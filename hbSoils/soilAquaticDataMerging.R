@@ -60,6 +60,12 @@ clean_df_list <- list(clean_temperature_data, clean_spectral_data, clean_nitrate
 #full join all datasets by date column
 allCleanData <- clean_df_list %>% reduce(full_join, by = "date")
 
+hourly_water_data <- allCleanData %>% group_by(year = year(date), month = month(date),
+                                               day = day(date), hour = hour(date)) %>%
+  summarise(across(c(TempC, SpConductivity, NO3_corrected_mgL, FDOM_corrected_QSU, Q_Ls), mean)) %>%
+  ungroup() %>% mutate(date = mdy_h(paste(month, day, year, hour))) %>% select(-c(month,day,year,hour)) %>%
+  select(date, TempC, SpConductivity, NO3_corrected_mgL, FDOM_corrected_QSU, Q_Ls)
+
 
 
 
@@ -97,10 +103,7 @@ master_soil <- data %>%
 time_drop_soil <- master_soil %>% mutate(date = floor_date(timeSeries, unit = "hour"))
 
 
-df_list_dropped_time <- list(time_drop_soil, allCleanData)
-
-
-merged_clean_data <- df_list_dropped_time %>% reduce(full_join, by = "date")
+merged_clean_data <- full_join(time_drop_soil, hourly_water_data, by = "date")
 
 merged_clean_data <- merged_clean_data %>% select(-c(timeSeries))
 
