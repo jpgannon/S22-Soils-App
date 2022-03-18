@@ -44,7 +44,7 @@ shinyUI(fluidPage(
                            start = "2012-11-1",
                            end = "2015-11-1"),
             #Select only columns that we need for variables to look at
-            varSelectInput("selection", "Variable", merged_clean_data %>% select(Soil_Moisture_at_5cm,
+            varSelectInput("selection", "Plot 1", merged_clean_data %>% select(Soil_Moisture_at_5cm,
                                                                                  Soil_Moisture_at_15cm,
                                                                                  Soil_Moisture_at_30cm,
                                                                                  Air_Temp_at_150cm,
@@ -64,10 +64,10 @@ shinyUI(fluidPage(
             
             ),
             #Configure if second plot is visible.
-            checkboxInput("multiplots", "Show Two Plots", FALSE),
+            checkboxInput("multiplots", "Plot 2", FALSE),
             conditionalPanel(
             condition = "input.multiplots == 1",
-            varSelectInput("selection2", "Variable 2", merged_clean_data %>% select(Soil_Moisture_at_5cm,
+            varSelectInput("selection2", "", merged_clean_data %>% select(Soil_Moisture_at_5cm,
                                                                                     Soil_Moisture_at_15cm,
                                                                                     Soil_Moisture_at_30cm,
                                                                                     Air_Temp_at_150cm,
@@ -86,10 +86,10 @@ shinyUI(fluidPage(
                                                                                     Q_Ls)
                            ),
             #Configure if thirsd plot is visible.
-            checkboxInput("multiplots2", "Show Another Plot", FALSE),),
+            checkboxInput("multiplots2", "Plot 3", FALSE),),
         conditionalPanel(
           condition = "input.multiplots2 == 1",
-          varSelectInput("selection3", "Variable 3", merged_clean_data %>% select(Soil_Moisture_at_5cm,
+          varSelectInput("selection3", "", merged_clean_data %>% select(Soil_Moisture_at_5cm,
                                                                                   Soil_Moisture_at_15cm,
                                                                                   Soil_Moisture_at_30cm,
                                                                                   Air_Temp_at_150cm,
@@ -108,10 +108,10 @@ shinyUI(fluidPage(
                                                                                   Q_Ls)
           ),
           #Configure if second plot is visible.
-          checkboxInput("multiplots3", "Show Another Plots", FALSE),),
+          checkboxInput("multiplots3", "Plot 4", FALSE),),
     conditionalPanel(
       condition = "input.multiplots3 == 1",
-      varSelectInput("selection4", "Variable 4", merged_clean_data %>% select(Soil_Moisture_at_5cm,
+      varSelectInput("selection4", "", merged_clean_data %>% select(Soil_Moisture_at_5cm,
                                                                               Soil_Moisture_at_15cm,
                                                                               Soil_Moisture_at_30cm,
                                                                               Air_Temp_at_150cm,

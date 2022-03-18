@@ -60,13 +60,6 @@ shinyServer(function(input, output) {
         coord_cartesian(xlim = as.POSIXct(ranges$x, origin = "1970-01-01"), expand = FALSE) +
         theme(text = element_text(size = 16))
       })
-
-    
-    #Output text for DEBUGGING and seeing specific date range
-    output$testText <- renderText({
-      paste0("Date Range is ", input$dateRange)
-    })
-    
     
     
     
