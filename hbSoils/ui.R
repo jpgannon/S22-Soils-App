@@ -22,7 +22,6 @@ setwd("~/S22-Soils-App/")
 
 source("hbSoils/soilAquaticDataMerging.R")
 
-
 shinyUI(fluidPage(
     
     # Application title
