@@ -25,10 +25,20 @@ shinyServer(function(input, output) {
     #Output multiple plots
     output$multiplot <- renderPlot({
       ggplot(data(), aes(x = date, !!input$selection)) +
-        theme_classic() + geom_line() + labs(x = "Time", 
+        theme_classic() + geom_point() + labs(x = "Time", 
                                              title = "") 
     })
     
+    #Output plot for any selected variable
+    output$bvPlot <- renderPlot({
+      
+      ggplot(data(), aes(x = !!input$BV_selection1, !!input$BV_selection2)) +
+        theme_classic() + geom_line() +
+        coord_cartesian(xlim = as.POSIXct(ranges$x, origin = "1970-01-01"), expand = FALSE) +
+        scale_y_continuous()+
+        scale_x_continuous()+
+        theme(text = element_text(size = 16))
+    })
   
     #Output plot for any selected variable
     output$timePlot <- renderPlot({
