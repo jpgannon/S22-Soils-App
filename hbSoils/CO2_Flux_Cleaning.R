@@ -135,5 +135,10 @@ ggplot(co2_flux_int, aes(x = timeSeries)) +
   ylab("CO2 Flux (micromoles CO2 / meter squared / second)") +
   theme_classic()
 
+ggplot(merged_clean_data, aes(x = Soil_Moisture_at_30cm, y = Soil_Temp_at_30cm)) + 
+  geom_line()
 
+ggplot(merged_clean_data, aes(x = Soil_Moisture_at_30cm, Soil_Temp_at_30cm)) +
+  theme_classic() + geom_line() +
+  theme(text = element_text(size = 16))
 
