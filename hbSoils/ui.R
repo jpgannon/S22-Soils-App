@@ -20,8 +20,7 @@ library(tidyverse)
 
 setwd("~/S22-Soils-App/")
 
-source("hbSoils/soilAquaticDataMerging.R")
-
+merged_clean_data <- "hbSoils/merged_clean_data.csv"
 
 shinyUI(fluidPage(
     
