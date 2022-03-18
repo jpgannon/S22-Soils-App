@@ -118,7 +118,3 @@ merged_clean_data <- merged_clean_data %>% rename( Soil_Moisture_at_15cm = Soil_
                                                   )
 
 
-write.csv(merged_clean_data ,"hbSoils/merged_clean_data.csv", row.names = TRUE)
-
-
-
