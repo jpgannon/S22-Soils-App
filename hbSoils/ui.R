@@ -33,7 +33,7 @@ shinyUI(fluidPage(
                tabPanel("Bivariate",
                         h2("Bivariate Tab"),
                ),
-               navbarMenu("Timeseries",
+               tabPanel("Timeseries",
                         
                )),
     
