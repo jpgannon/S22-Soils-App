@@ -26,7 +26,7 @@ shinyServer(function(input, output) {
     output$multiplot <- renderPlot({
       ggplot(data(), aes(x = date, !!input$selection)) +
         theme_classic() + geom_line() + labs(x = "Time", 
-                                             title = "")
+                                             title = "") 
     })
     
   
@@ -35,26 +35,30 @@ shinyServer(function(input, output) {
       
       ggplot(data(), aes(x = date, !!input$selection)) +
         theme_classic() + geom_line() +
-        coord_cartesian(xlim = as.POSIXct(ranges$x, origin = "1970-01-01"), expand = FALSE)
+        coord_cartesian(xlim = as.POSIXct(ranges$x, origin = "1970-01-01"), expand = FALSE) +
+        theme(text = element_text(size = 16))
     })
     #Output plot for second selected variable
     output$timePlot2 <- renderPlot({
       ggplot(data(), aes(x = date, !!input$selection2)) +
         theme_classic() + geom_line() +
-        coord_cartesian(xlim = as.POSIXct(ranges$x, origin = "1970-01-01"), expand = FALSE)
+        coord_cartesian(xlim = as.POSIXct(ranges$x, origin = "1970-01-01"), expand = FALSE) +
+        theme(text = element_text(size = 16))
       })
     
     #Output plot for third selected variable
     output$timePlot3 <- renderPlot({
       ggplot(data(), aes(x = date, !!input$selection3)) +
         theme_classic() + geom_line() +
-        coord_cartesian(xlim = as.POSIXct(ranges$x, origin = "1970-01-01"), expand = FALSE)
+        coord_cartesian(xlim = as.POSIXct(ranges$x, origin = "1970-01-01"), expand = FALSE) +
+        theme(text = element_text(size = 16))
       })
     #Output plot for fourth selected variable
     output$timePlot4 <- renderPlot({
       ggplot(data(), aes(x = date, !!input$selection4)) +
         theme_classic() + geom_line() +
-        coord_cartesian(xlim = as.POSIXct(ranges$x, origin = "1970-01-01"), expand = FALSE)
+        coord_cartesian(xlim = as.POSIXct(ranges$x, origin = "1970-01-01"), expand = FALSE) +
+        theme(text = element_text(size = 16))
       })
 
     
