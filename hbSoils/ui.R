@@ -52,7 +52,7 @@ shinyUI(fluidPage(
                                                                                                Q_Ls)
                                            
                             ),
-                            varSelectInput("BV_selection2", "Bivarate Variable 1", merged_clean_data %>% select(Soil_Moisture_at_5cm,
+                            varSelectInput("BV_selection2", "Bivarate Variable 2", merged_clean_data %>% select(Soil_Moisture_at_5cm,
                                                                                                Soil_Moisture_at_15cm,
                                                                                                Soil_Moisture_at_30cm,
                                                                                                Air_Temp_at_150cm,
