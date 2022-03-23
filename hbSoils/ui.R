@@ -33,7 +33,7 @@ shinyUI(fluidPage(
                         h2("Bivariate Tab"),
                         sidebarLayout(
                           sidebarPanel(
-                            varSelectInput("BV_selection1", "Bivarate Varaible 1", merged_clean_data %>% select(Soil_Moisture_at_5cm,
+                            varSelectInput("BV_selection1", "Bivarate Variable 1", merged_clean_data %>% select(Soil_Moisture_at_5cm,
                                                                                                Soil_Moisture_at_15cm,
                                                                                                Soil_Moisture_at_30cm,
                                                                                                Air_Temp_at_150cm,
@@ -74,14 +74,8 @@ shinyUI(fluidPage(
                           
                           # Displays timeseries updatable graph and specific date range text
                           mainPanel(
-                            plotOutput("bvPlot", height = 275,
-                                       dblclick = "plot1_dblclick",
-                                       brush = brushOpts(
-                                         id = 'plot1_brush',
-                                         resetOnNew = TRUE))
+                            plotOutput("bvPlot", height = 275,)
                           )
-                            
-                          
                         )
                         
                         
