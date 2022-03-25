@@ -87,6 +87,15 @@ shinyUI(fluidPage(
                             dateRangeInput("dateRange", "Desired Date Range",
                                            start = "2012-11-1",
                                            end = "2015-11-1"),
+                            #Smoothing line option adding
+                            checkboxInput("smoothingadd", "Add smoothing line", FALSE),
+                  
+                            #Add Horizontal Line selection
+                            checkboxInput("hlineadd", "add horizontal reference line", FALSE),
+                            conditionalPanel(
+                              condition = "input.hlineadd == 1",
+                            numericInput("hline", label = h4("Add horizontal Line"), value = 1, FALSE)),
+                          
                             #Select only columns that we need for variables to look at
                             varSelectInput("selection", "Plot 1", merged_clean_data %>% select(Soil_Moisture_at_5cm,
                                                                                                Soil_Moisture_at_15cm,

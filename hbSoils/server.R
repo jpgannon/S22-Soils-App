@@ -26,7 +26,8 @@ shinyServer(function(input, output) {
     output$multiplot <- renderPlot({
       ggplot(data(), aes(x = date, !!input$selection)) +
         theme_classic() + geom_point() + labs(x = "Time", 
-                                             title = "") 
+                                             title = "")
+        
     })
     
     #Output Bivariate plot for any selected variable
@@ -45,30 +46,34 @@ shinyServer(function(input, output) {
       ggplot(data(), aes(x = date, !!input$selection)) +
         theme_classic() + geom_line() +
         coord_cartesian(xlim = as.POSIXct(ranges$x, origin = "1970-01-01"), expand = FALSE) +
-        theme(text = element_text(size = 16))
-    })
+        theme(text = element_text(size = 16)) + {if(input$hlineadd)geom_hline(yintercept = input$hline)} + 
+        {if(input$smoothingadd)geom_smooth()}
+    }, res = 80)
     #Output plot for second selected variable
     output$timePlot2 <- renderPlot({
       ggplot(data(), aes(x = date, !!input$selection2)) +
         theme_classic() + geom_line() +
         coord_cartesian(xlim = as.POSIXct(ranges$x, origin = "1970-01-01"), expand = FALSE) +
-        theme(text = element_text(size = 16))
-      })
+        theme(text = element_text(size = 16)) + {if(input$hlineadd)geom_hline(yintercept = input$hline)} +
+        {if(input$smoothingadd)geom_smooth()}
+      }, res = 80)
     
     #Output plot for third selected variable
     output$timePlot3 <- renderPlot({
       ggplot(data(), aes(x = date, !!input$selection3)) +
         theme_classic() + geom_line() +
         coord_cartesian(xlim = as.POSIXct(ranges$x, origin = "1970-01-01"), expand = FALSE) +
-        theme(text = element_text(size = 16))
-      })
+        theme(text = element_text(size = 16)) + {if(input$hlineadd)geom_hline(yintercept = input$hline)} +
+        {if(input$smoothingadd)geom_smooth()}
+      }, res = 80)
     #Output plot for fourth selected variable
     output$timePlot4 <- renderPlot({
       ggplot(data(), aes(x = date, !!input$selection4)) +
         theme_classic() + geom_line() +
         coord_cartesian(xlim = as.POSIXct(ranges$x, origin = "1970-01-01"), expand = FALSE) +
-        theme(text = element_text(size = 16))
-      })
+        theme(text = element_text(size = 16)) + {if(input$hlineadd)geom_hline(yintercept = input$hline)} +
+        {if(input$smoothingadd)geom_smooth()}
+      }, res = 80)
     
     
     
