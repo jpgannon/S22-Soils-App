@@ -110,7 +110,8 @@ shinyUI(fluidPage(
                                                                                                                                    FDOM_corrected_QSU,
                                                                                                                                    Q_Ls)
                                                             
-                                             ),
+                                             )),
+                            conditionalPanel(condition = "input.BVmulti3 == 1 || input.BVmulti2 == 1 || input.BVmulti1 == 1",
                                              checkboxInput("BVmulti2", "BVPlot 3", FALSE),),
                             conditionalPanel(condition = "input.BVmulti2 == 1",
                                              varSelectInput("BV_selection3_1", "Bivarate Variable 1", merged_clean_data %>% select(Soil_Moisture_at_5cm,
@@ -150,9 +151,10 @@ shinyUI(fluidPage(
                                                                                                                                    FDOM_corrected_QSU,
                                                                                                                                    Q_Ls)
                                                             
-                                             ),
+                                             ),),
+                            conditionalPanel(condition = "input.BVmulti3 == 1 || input.BVmulti2 == 1",
                                              checkboxInput("BVmulti3", "BVPlot 4", FALSE),),
-                            conditionalPanel(condition = "input.BVmulti3 == 1",
+                            conditionalPanel(condition = "input.BVmulti3 == 1 || input.BVmulti4 == 1",
                                              varSelectInput("BV_selection4_1", "Bivarate Variable 1", merged_clean_data %>% select(Soil_Moisture_at_5cm,
                                                                                                                                    Soil_Moisture_at_15cm,
                                                                                                                                    Soil_Moisture_at_30cm,
@@ -196,36 +198,20 @@ shinyUI(fluidPage(
                             
                           ),
                           
-                          # Displays timeseries updatable graph and specific date range text
+                          # Displays Bivariate updatable graph and specific date range text
                           mainPanel(
-                            plotOutput("bvPlot", height = 275,
-                                       dblclick = "plot1_dblclick",
-                                       brush = brushOpts(
-                                         id = 'plot1_brush',
-                                         resetOnNew = TRUE)),
+                            plotOutput("bvPlot", height = 375, width = 375),
                             conditionalPanel(
                               condition = "input.BVmulti1 == 1",
-                              plotOutput("bvPlot2", height = 275,
-                                         dblclick = "plot1_dblclick",
-                                         brush = brushOpts(
-                                           id = "plot1_brush",
-                                           resetOnNew = TRUE)),
+                              plotOutput("bvPlot2", height = 375, width = 375),
                             ),
                             conditionalPanel(
                               condition = "input.BVmulti2 == 1",
-                              plotOutput("bvPlot3", height = 275,
-                                         dblclick = "plot1_dblclick",
-                                         brush = brushOpts(
-                                           id = "plot1_brush",
-                                           resetOnNew = TRUE)),
+                              plotOutput("bvPlot3", height = 375, width = 375),
                             ),
                             conditionalPanel(
                               condition = "input.BVmulti3 == 1",
-                              plotOutput("bvPlot4", height = 275,
-                                         dblclick = "plot1_dblclick",
-                                         brush = brushOpts(
-                                           id = "plot1_brush",
-                                           resetOnNew = TRUE))
+                              plotOutput("bvPlot4", height = 375, width = 375)
                             )
                             
                           )
@@ -290,9 +276,11 @@ shinyUI(fluidPage(
                                                                                             NO3_corrected_mgL,
                                                                                             FDOM_corrected_QSU,
                                                                                             Q_Ls)
-                              ),
-                              #Configure if thirsd plot is visible.
-                              checkboxInput("multiplots2", "Plot 3", FALSE),),
+                              ),), 
+                            
+                            #Configure if second plot is visible.
+                            conditionalPanel(condition = "input.multiplots == 1 || input.multiplots3 == 1 || input.multiplots2 == 1",
+                                             checkboxInput("multiplots2", "Plot 3", FALSE),),
                             conditionalPanel(
                               condition = "input.multiplots2 == 1",
                               varSelectInput("selection3", "", merged_clean_data %>% select(Soil_Moisture_at_5cm,
@@ -312,9 +300,12 @@ shinyUI(fluidPage(
                                                                                             NO3_corrected_mgL,
                                                                                             FDOM_corrected_QSU,
                                                                                             Q_Ls)
-                              ),
-                              #Configure if second plot is visible.
-                              checkboxInput("multiplots3", "Plot 4", FALSE),),
+                              ),),
+                            #Configure if second plot is visible.
+                            conditionalPanel(condition = "input.multiplots2 == 1 || input.multiplots3 == 1 || input.multiplots2 == 1",
+                                             checkboxInput("multiplots3", "Plot 4", FALSE),),
+                              
+                              
                             conditionalPanel(
                               condition = "input.multiplots3 == 1",
                               varSelectInput("selection4", "", merged_clean_data %>% select(Soil_Moisture_at_5cm,
