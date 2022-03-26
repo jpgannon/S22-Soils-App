@@ -27,8 +27,23 @@ shinyUI(fluidPage(
     # Application title
     titlePanel("Data Vizualization Of Hubbard Brook"),
     
-    # Creates two tabs for timeseries & bivariate data
+    # Creates three tabs for timeseries, bivariate, & about
     navbarPage("Type of Analysis", theme = shinytheme("flatly"), position = "fixed-top",
+               tabPanel("About",
+                        h2("About the App"),
+                        fluidRow(
+                          tags$h4("This app visualizes terrestrial and aqautic data collected from the Hubbard
+                                    Brook Experimental Forest through reactive visualizations. Users can manipulate 
+                                  the data using various interactive elements found in both tabs."),
+                          tags$h4(strong('Information about the functionality and parts of this app are below:')),
+                          strong('Timeseries Analysis'), 
+                          tags$li('Up to four graphs can be created based on the users desired variable of analysis 
+                          and date range. All plots are reactive with the ability to change the variable and date.'),
+                          strong('Bivariate Analysis'),
+                          tags$li('Up to four graphs can be created based on the users desired variables of analysis. 
+                                  All plots are reactive with the ability to change the variables.'),
+               )),
+               
                tabPanel("Bivariate",
                         h2("Bivariate Tab"),
                         sidebarLayout(
@@ -364,6 +379,7 @@ shinyUI(fluidPage(
 
                         
                )
+               
     
     )
   )
