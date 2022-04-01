@@ -17,10 +17,7 @@ library(lubridate)
 library(ggplot2)
 library(tidyverse)
 
-
-setwd("~/S22-Soils-App/")
-
-source("hbSoils/soilAquaticDataMerging.R")
+source("soilAquaticDataMerging.R")
 
 shinyUI(fluidPage(
     

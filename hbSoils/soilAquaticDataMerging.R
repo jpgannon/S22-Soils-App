@@ -5,19 +5,19 @@ library(lubridate)
 
 ##Aquatic Data
 #Temperature
-temperatureRawData <- read_csv("hbSoils/data_raw/HBF Temperature.csv")
+temperatureRawData <- read_csv("data_raw/HBF Temperature.csv")
 
 #Spectral Conductivity 
-spectralConductivityRaw <- read_csv("hbSoils/data_raw/HBF Spec Cond.csv")
+spectralConductivityRaw <- read_csv("data_raw/HBF Spec Cond.csv")
 
 #Nitrate 
-nitrateDataRaw <- read_csv("hbSoils/data_raw/HBF Nitrate.csv")
+nitrateDataRaw <- read_csv("data_raw/HBF Nitrate.csv")
 
 #Fluorescent dissolved Organic Matter
-fluorescentDataRaw <- read_csv("hbSoils/data_raw/HBF fDOM.csv")
+fluorescentDataRaw <- read_csv("data_raw/HBF fDOM.csv")
 
 #Water Discharge
-dischargeDataRaw <- read_csv("hbSoils/data_raw/HBF Discharge Storm ID.csv")
+dischargeDataRaw <- read_csv("data_raw/HBF Discharge Storm ID.csv")
 
 #Data Loaded.
 
@@ -74,7 +74,7 @@ hourly_water_data <- allCleanData %>% group_by(year = year(date), month = month(
 
 
 ##CO2 Cleaning Data
-data_raw <- read_csv("hbSoils/data_raw/Hubbard_Brook_CO2_Fluxes.csv")
+data_raw <- read_csv("data_raw/Hubbard_Brook_CO2_Fluxes.csv")
 
 data <- data_raw[0:28669, ]
 ## data frame with all soil measurements
