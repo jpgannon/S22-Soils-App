@@ -16,6 +16,7 @@ library(shinydashboard)
 library(lubridate)
 library(ggplot2)
 library(tidyverse)
+library(ggpmisc)
 
 source("soilAquaticDataMerging.R")
 
@@ -45,6 +46,8 @@ shinyUI(fluidPage(
                         h2("Bivariate Tab"),
                         sidebarLayout(
                           sidebarPanel(
+                            #Option to show linear model.
+                            checkboxInput("linearadd", "Show linear model", FALSE),
                             varSelectInput("BV_selection1", "Bivarate Variable 1", merged_clean_data %>% select(Soil_Moisture_at_5cm,
                                                                                                Soil_Moisture_at_15cm,
                                                                                                Soil_Moisture_at_30cm,
