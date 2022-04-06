@@ -7,7 +7,6 @@
 #    http://shiny.rstudio.com/
 #
 
-
 # Define server logic required to draw a histogram
 shinyServer(function(input, output) {
 
@@ -37,16 +36,11 @@ shinyServer(function(input, output) {
         theme_classic() + geom_line() +
         scale_y_continuous()+
         scale_x_continuous()+
-        theme(text = element_text(size = 16))
-    })
-    #Output Bivariate plot for any selected variable
-    output$bvPlot <- renderPlot({
-      
-      ggplot(data(), aes(x = !!input$BV_selection1, !!input$BV_selection2)) +
-        theme_classic() + geom_line() +
-        scale_y_continuous()+
-        scale_x_continuous()+
-        theme(text = element_text(size = 16))
+        theme(text = element_text(size = 16)) +
+        {if(input$linearadd)geom_smooth(method = "lm", se=FALSE, color = 'blue', formula = y ~ x)} +
+        {if(input$linearadd)stat_poly_eq(formula = y ~ x, 
+                        aes(label = paste(..eq.label.., ..rr.label.., sep = "~~~")), 
+                        parse = TRUE)}
     })
     #Output Bivariate plot for any selected variable
     output$bvPlot2 <- renderPlot({
@@ -55,7 +49,11 @@ shinyServer(function(input, output) {
         theme_classic() + geom_line() +
         scale_y_continuous()+
         scale_x_continuous()+
-        theme(text = element_text(size = 16))
+        theme(text = element_text(size = 16)) +
+        {if(input$linearadd)geom_smooth(method = "lm", se=FALSE, color = 'blue', formula = y ~ x)} +
+        {if(input$linearadd)stat_poly_eq(formula = y ~ x, 
+                                         aes(label = paste(..eq.label.., ..rr.label.., sep = "~~~")), 
+                                         parse = TRUE)}
     })
     #Output Bivariate plot for any selected variable
     output$bvPlot3 <- renderPlot({
@@ -64,7 +62,11 @@ shinyServer(function(input, output) {
         theme_classic() + geom_line() +
         scale_y_continuous()+
         scale_x_continuous()+
-        theme(text = element_text(size = 16))
+        theme(text = element_text(size = 16)) +
+        {if(input$linearadd)geom_smooth(method = "lm", se=FALSE, color = 'blue', formula = y ~ x)} +
+        {if(input$linearadd)stat_poly_eq(formula = y ~ x, 
+                                         aes(label = paste(..eq.label.., ..rr.label.., sep = "~~~")), 
+                                         parse = TRUE)}
     })
     #Output Bivariate plot for any selected variable
     output$bvPlot4 <- renderPlot({
@@ -73,7 +75,11 @@ shinyServer(function(input, output) {
         theme_classic() + geom_line() +
         scale_y_continuous()+
         scale_x_continuous()+
-        theme(text = element_text(size = 16))
+        theme(text = element_text(size = 16)) +
+        {if(input$linearadd)geom_smooth(method = "lm", se=FALSE, color = 'blue', formula = y ~ x)} +
+        {if(input$linearadd)stat_poly_eq(formula = y ~ x, 
+                                         aes(label = paste(..eq.label.., ..rr.label.., sep = "~~~")), 
+                                         parse = TRUE)}
     })
   
     #Output plot for any selected variable
