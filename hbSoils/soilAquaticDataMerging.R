@@ -114,8 +114,11 @@ merged_clean_data <- merged_clean_data %>% rename( Soil_Moisture_at_15cm = Soil_
                                                    Soil_Temp_at_5cm = Soil_Temp_5cm,
                                                   Temp_of_Chamber = Chamber_Temp,
                                                   Air_Temp_at_150cm = Air_Temp_150cm,
-                                                  Temp_Celcius = TempC,
-                                                  Spectral_Conductivity = SpConductivity,
+                                                  Stream_Temp_Celcius = TempC,
+                                                  Stream_Specific_Conductance = SpConductivity,
+                                                  Stream_NO3_mgL = NO3_corrected_mgL,
+                                                  Stream_FDOM_QSU = FDOM_corrected_QSU,
+                                                  Stream_Discharge_L = Q_Ls,
                                                   )
 
 

@@ -54,11 +54,11 @@ shinyUI(fluidPage(
                                                                                                Soil_Temp_at_15cm,
                                                                                                Soil_Temp_at_30cm,
                                                                                                CO2_Flux, 
-                                                                                               Temp_Celcius,
-                                                                                               Spectral_Conductivity,
-                                                                                               NO3_corrected_mgL,
-                                                                                               FDOM_corrected_QSU,
-                                                                                               Q_Ls)
+                                                                                               Stream_Temp_Celcius,
+                                                                                               Stream_Specific_Conductance,
+                                                                                               Stream_NO3_mgL,
+                                                                                               Stream_FDOM_QSU,
+                                                                                               Stream_Discharge_L)
                                            
                             ),
                             varSelectInput("BV_selection2", "Bivarate Variable 2", merged_clean_data %>% select(Soil_Moisture_at_5cm,
@@ -70,11 +70,11 @@ shinyUI(fluidPage(
                                                                                                Soil_Temp_at_15cm,
                                                                                                Soil_Temp_at_30cm,
                                                                                                CO2_Flux, 
-                                                                                               Temp_Celcius,
-                                                                                               Spectral_Conductivity,
-                                                                                               NO3_corrected_mgL,
-                                                                                               FDOM_corrected_QSU,
-                                                                                               Q_Ls)
+                                                                                               Stream_Temp_Celcius,
+                                                                                               Stream_Specific_Conductance,
+                                                                                               Stream_NO3_mgL,
+                                                                                               Stream_FDOM_QSU,
+                                                                                               Stream_Discharge_L)
                                            
                             ),
                             checkboxInput("BVmulti1", "BVPlot 2", FALSE),
@@ -88,11 +88,11 @@ shinyUI(fluidPage(
                                                                                                                                    Soil_Temp_at_15cm,
                                                                                                                                    Soil_Temp_at_30cm,
                                                                                                                                    CO2_Flux, 
-                                                                                                                                   Temp_Celcius,
-                                                                                                                                   Spectral_Conductivity,
-                                                                                                                                   NO3_corrected_mgL,
-                                                                                                                                   FDOM_corrected_QSU,
-                                                                                                                                   Q_Ls)
+                                                                                                                                   Stream_Temp_Celcius,
+                                                                                                                                   Stream_Specific_Conductance,
+                                                                                                                                   Stream_NO3_mgL,
+                                                                                                                                   Stream_FDOM_QSU,
+                                                                                                                                   Stream_Discharge_L)
                                                             
                                              ),
                                              varSelectInput("BV_selection2_2", "Bivarate Variable 2", merged_clean_data %>% select(Soil_Moisture_at_5cm,
@@ -104,11 +104,11 @@ shinyUI(fluidPage(
                                                                                                                                    Soil_Temp_at_15cm,
                                                                                                                                    Soil_Temp_at_30cm,
                                                                                                                                    CO2_Flux, 
-                                                                                                                                   Temp_Celcius,
-                                                                                                                                   Spectral_Conductivity,
-                                                                                                                                   NO3_corrected_mgL,
-                                                                                                                                   FDOM_corrected_QSU,
-                                                                                                                                   Q_Ls)
+                                                                                                                                   Stream_Temp_Celcius,
+                                                                                                                                   Stream_Specific_Conductance,
+                                                                                                                                   Stream_NO3_mgL,
+                                                                                                                                   Stream_FDOM_QSU,
+                                                                                                                                   Stream_Discharge_L)
                                                             
                                              )),
                             conditionalPanel(condition = "input.BVmulti3 == 1 || input.BVmulti2 == 1 || input.BVmulti1 == 1",
@@ -123,11 +123,11 @@ shinyUI(fluidPage(
                                                                                                                                    Soil_Temp_at_15cm,
                                                                                                                                    Soil_Temp_at_30cm,
                                                                                                                                    CO2_Flux, 
-                                                                                                                                   Temp_Celcius,
-                                                                                                                                   Spectral_Conductivity,
-                                                                                                                                   NO3_corrected_mgL,
-                                                                                                                                   FDOM_corrected_QSU,
-                                                                                                                                   Q_Ls)
+                                                                                                                                   Stream_Temp_Celcius,
+                                                                                                                                   Stream_Specific_Conductance,
+                                                                                                                                   Stream_NO3_mgL,
+                                                                                                                                   Stream_FDOM_QSU,
+                                                                                                                                   Stream_Discharge_L)
                                                             
                                              ),
                                              varSelectInput("BV_selection3_2", "Bivarate Variable 2", merged_clean_data %>% select(Soil_Moisture_at_5cm,
@@ -139,11 +139,11 @@ shinyUI(fluidPage(
                                                                                                                                    Soil_Temp_at_15cm,
                                                                                                                                    Soil_Temp_at_30cm,
                                                                                                                                    CO2_Flux, 
-                                                                                                                                   Temp_Celcius,
-                                                                                                                                   Spectral_Conductivity,
-                                                                                                                                   NO3_corrected_mgL,
-                                                                                                                                   FDOM_corrected_QSU,
-                                                                                                                                   Q_Ls)
+                                                                                                                                   Stream_Temp_Celcius,
+                                                                                                                                   Stream_Specific_Conductance,
+                                                                                                                                   Stream_NO3_mgL,
+                                                                                                                                   Stream_FDOM_QSU,
+                                                                                                                                   Stream_Discharge_L)
                                                             
                                              ),),
                             conditionalPanel(condition = "input.BVmulti3 == 1 || input.BVmulti2 == 1",
@@ -158,12 +158,11 @@ shinyUI(fluidPage(
                                                                                                                                    Soil_Temp_at_15cm,
                                                                                                                                    Soil_Temp_at_30cm,
                                                                                                                                    CO2_Flux, 
-                                                                                                                                   Temp_Celcius,
-                                                                                                                                   Spectral_Conductivity,
-                                                                                                                                   NO3_corrected_mgL,
-                                                                                                                                   FDOM_corrected_QSU,
-                                                                                                                                   Q_Ls)
-                                                            
+                                                                                                                                   Stream_Temp_Celcius,
+                                                                                                                                   Stream_Specific_Conductance,
+                                                                                                                                   Stream_NO3_mgL,
+                                                                                                                                   Stream_FDOM_QSU,
+                                                                                                                                   Stream_Discharge_L)
                                              ),
                                              varSelectInput("BV_selection4_2", "Bivarate Variable 2", merged_clean_data %>% select(Soil_Moisture_at_5cm,
                                                                                                                                    Soil_Moisture_at_15cm,
@@ -174,11 +173,11 @@ shinyUI(fluidPage(
                                                                                                                                    Soil_Temp_at_15cm,
                                                                                                                                    Soil_Temp_at_30cm,
                                                                                                                                    CO2_Flux, 
-                                                                                                                                   Temp_Celcius,
-                                                                                                                                   Spectral_Conductivity,
-                                                                                                                                   NO3_corrected_mgL,
-                                                                                                                                   FDOM_corrected_QSU,
-                                                                                                                                   Q_Ls)
+                                                                                                                                   Stream_Temp_Celcius,
+                                                                                                                                   Stream_Specific_Conductance,
+                                                                                                                                   Stream_NO3_mgL,
+                                                                                                                                   Stream_FDOM_QSU,
+                                                                                                                                   Stream_Discharge_L)
                                                             
                                              ),)
                             
@@ -233,11 +232,11 @@ shinyUI(fluidPage(
                                                                                                Soil_Temp_at_15cm,
                                                                                                Soil_Temp_at_30cm,
                                                                                                CO2_Flux, 
-                                                                                               Temp_Celcius,
-                                                                                               Spectral_Conductivity,
-                                                                                               NO3_corrected_mgL,
-                                                                                               FDOM_corrected_QSU,
-                                                                                               Q_Ls)
+                                                                                               Stream_Temp_Celcius,
+                                                                                               Stream_Specific_Conductance,
+                                                                                               Stream_NO3_mgL,
+                                                                                               Stream_FDOM_QSU,
+                                                                                               Stream_Discharge_L)
                                            
                             ),
                             #Configure if second plot is visible.
@@ -253,11 +252,11 @@ shinyUI(fluidPage(
                                                                                             Soil_Temp_at_15cm,
                                                                                             Soil_Temp_at_30cm,
                                                                                             CO2_Flux, 
-                                                                                            Temp_Celcius,
-                                                                                            Spectral_Conductivity,
-                                                                                            NO3_corrected_mgL,
-                                                                                            FDOM_corrected_QSU,
-                                                                                            Q_Ls)
+                                                                                            Stream_Temp_Celcius,
+                                                                                            Stream_Specific_Conductance,
+                                                                                            Stream_NO3_mgL,
+                                                                                            Stream_FDOM_QSU,
+                                                                                            Stream_Discharge_L)
                               ),), 
                             
                             #Configure if second plot is visible.
@@ -274,11 +273,11 @@ shinyUI(fluidPage(
                                                                                             Soil_Temp_at_15cm,
                                                                                             Soil_Temp_at_30cm,
                                                                                             CO2_Flux, 
-                                                                                            Temp_Celcius,
-                                                                                            Spectral_Conductivity,
-                                                                                            NO3_corrected_mgL,
-                                                                                            FDOM_corrected_QSU,
-                                                                                            Q_Ls)
+                                                                                            Stream_Temp_Celcius,
+                                                                                            Stream_Specific_Conductance,
+                                                                                            Stream_NO3_mgL,
+                                                                                            Stream_FDOM_QSU,
+                                                                                            Stream_Discharge_L)
                               ),),
                             #Configure if second plot is visible.
                             conditionalPanel(condition = "input.multiplots2 == 1 || input.multiplots3 == 1 || input.multiplots2 == 1",
@@ -296,11 +295,11 @@ shinyUI(fluidPage(
                                                                                             Soil_Temp_at_15cm,
                                                                                             Soil_Temp_at_30cm,
                                                                                             CO2_Flux, 
-                                                                                            Temp_Celcius,
-                                                                                            Spectral_Conductivity,
-                                                                                            NO3_corrected_mgL,
-                                                                                            FDOM_corrected_QSU,
-                                                                                            Q_Ls)
+                                                                                            Stream_Temp_Celcius,
+                                                                                            Stream_Specific_Conductance,
+                                                                                            Stream_NO3_mgL,
+                                                                                            Stream_FDOM_QSU,
+                                                                                            Stream_Discharge_L)
                               ),)
                           ),
                           # Displays timeseries updatable graph and specific date range text
