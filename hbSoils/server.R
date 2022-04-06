@@ -40,7 +40,7 @@ shinyServer(function(input, output) {
         {if(input$linearadd)geom_smooth(method = "lm", se=FALSE, color = 'blue', formula = y ~ x)} +
         {if(input$linearadd)stat_poly_eq(formula = y ~ x, 
                         aes(label = paste(..eq.label.., ..rr.label.., sep = "~~~")), 
-                        parse = TRUE)}
+                        parse = TRUE, color = 'blue')}
     })
     #Output Bivariate plot for any selected variable
     output$bvPlot2 <- renderPlot({
@@ -53,7 +53,7 @@ shinyServer(function(input, output) {
         {if(input$linearadd)geom_smooth(method = "lm", se=FALSE, color = 'blue', formula = y ~ x)} +
         {if(input$linearadd)stat_poly_eq(formula = y ~ x, 
                                          aes(label = paste(..eq.label.., ..rr.label.., sep = "~~~")), 
-                                         parse = TRUE)}
+                                         parse = TRUE, color = 'blue')}
     })
     #Output Bivariate plot for any selected variable
     output$bvPlot3 <- renderPlot({
@@ -66,7 +66,7 @@ shinyServer(function(input, output) {
         {if(input$linearadd)geom_smooth(method = "lm", se=FALSE, color = 'blue', formula = y ~ x)} +
         {if(input$linearadd)stat_poly_eq(formula = y ~ x, 
                                          aes(label = paste(..eq.label.., ..rr.label.., sep = "~~~")), 
-                                         parse = TRUE)}
+                                         parse = TRUE, color = 'blue')}
     })
     #Output Bivariate plot for any selected variable
     output$bvPlot4 <- renderPlot({
@@ -79,7 +79,7 @@ shinyServer(function(input, output) {
         {if(input$linearadd)geom_smooth(method = "lm", se=FALSE, color = 'blue', formula = y ~ x)} +
         {if(input$linearadd)stat_poly_eq(formula = y ~ x, 
                                          aes(label = paste(..eq.label.., ..rr.label.., sep = "~~~")), 
-                                         parse = TRUE)}
+                                         parse = TRUE, color = 'blue')}
     })
   
     #Output plot for any selected variable
