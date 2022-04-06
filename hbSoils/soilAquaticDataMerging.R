@@ -82,8 +82,7 @@ master_soil <- data %>%
   mutate(timeSeries = ymd_hms(TIMESTAMP)) %>%
   select(timeSeries, VWC1_Chamber, VWC2_Chamber, VWC3_Chamber,
          SiteAirTemp, ChamberTemp, SoilTemp1_Chamber,
-         SoilTemp2_Chamber, SoilTemp3_Chamber,
-         CO2_Flux_1, CO2_Flux_2, CO2_Flux_3, nee.int) %>% 
+         SoilTemp2_Chamber, SoilTemp3_Chamber, nee.int) %>% 
   rename(Soil_Moisture_15cm = VWC1_Chamber,
          Soil_Moisture_30cm = VWC2_Chamber,
          Soil_Moisture_5cm = VWC3_Chamber,
@@ -92,7 +91,7 @@ master_soil <- data %>%
          Soil_Temp_5cm = SoilTemp3_Chamber,
          Chamber_Temp = ChamberTemp,
          Air_Temp_150cm = SiteAirTemp,
-         CO2_Flux = CO2_Flux_1)
+         CO2_Flux = nee.int)
 
 
 
@@ -115,7 +114,6 @@ merged_clean_data <- merged_clean_data %>% rename( Soil_Moisture_at_15cm = Soil_
                                                    Soil_Temp_at_5cm = Soil_Temp_5cm,
                                                   Temp_of_Chamber = Chamber_Temp,
                                                   Air_Temp_at_150cm = Air_Temp_150cm,
-                                                  CO2_Flux_Interpolated = nee.int,
                                                   Temp_Celcius = TempC,
                                                   Spectral_Conductivity = SpConductivity,
                                                   )
