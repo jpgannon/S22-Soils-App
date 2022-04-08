@@ -220,7 +220,7 @@ shinyUI(fluidPage(
                             checkboxInput("smoothingadd", "Add smoothing line", FALSE),
                   
                             #Add Horizontal Line selection
-                            checkboxInput("hlineadd", "add horizontal reference line", FALSE),
+                            checkboxInput("hlineadd", "Add horizontal reference line", FALSE),
                             conditionalPanel(
                               condition = "input.hlineadd == 1",
                             numericInput("hline", label = h4("Add horizontal Line"), value = 1, FALSE)),
