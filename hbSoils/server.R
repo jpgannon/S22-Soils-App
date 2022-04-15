@@ -96,7 +96,7 @@ shinyServer(function(input, output) {
       ggplot(data(), aes(x = date, !!input$selection2)) +
         theme_classic() + geom_line() +
         coord_cartesian(xlim = as.POSIXct(ranges$x, origin = "1970-01-01"), expand = FALSE) +
-        theme(text = element_text(size = 16), axis.title.x=element_blank(), axis.text.y = element_text(angle=90, vjust=1, hjust=1)) + {if(input$hlineadd)geom_hline(yintercept = input$hline)} +
+        theme(text = element_text(size = 16), axis.title.x=element_blank(), axis.text.y = element_text(angle=90, vjust=1, hjust=1))  +
         {if(input$smoothingadd)geom_smooth()}
       }, res = 80)
     
@@ -105,7 +105,7 @@ shinyServer(function(input, output) {
       ggplot(data(), aes(x = date, !!input$selection3)) +
         theme_classic() + geom_line() +
         coord_cartesian(xlim = as.POSIXct(ranges$x, origin = "1970-01-01"), expand = FALSE) +
-        theme(text = element_text(size = 16), axis.title.x=element_blank(), axis.text.y = element_text(angle=90, vjust=1, hjust=1)) + {if(input$hlineadd)geom_hline(yintercept = input$hline)} +
+        theme(text = element_text(size = 16), axis.title.x=element_blank(), axis.text.y = element_text(angle=90, vjust=1, hjust=1))  +
         {if(input$smoothingadd)geom_smooth()}
       }, res = 80)
     
@@ -114,7 +114,7 @@ shinyServer(function(input, output) {
       ggplot(data(), aes(x = date, !!input$selection4)) +
         theme_classic() + geom_line() +
         coord_cartesian(xlim = as.POSIXct(ranges$x, origin = "1970-01-01"), expand = FALSE) +
-        theme(text = element_text(size = 16), axis.title.x=element_blank(), axis.text.y = element_text(angle=90, vjust=1, hjust=1)) + {if(input$hlineadd)geom_hline(yintercept = input$hline)} +
+        theme(text = element_text(size = 16), axis.title.x=element_blank(), axis.text.y = element_text(angle=90, vjust=1, hjust=1))  +
         {if(input$smoothingadd)geom_smooth()}
       }, res = 80)
     
