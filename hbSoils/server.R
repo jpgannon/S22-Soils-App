@@ -33,7 +33,7 @@ shinyServer(function(input, output) {
     output$bvPlot <- renderPlot({
       
       ggplot(data(), aes(x = !!input$BV_selection1, !!input$BV_selection2)) +
-        theme_classic() + geom_line() +
+        theme_classic() + geom_point() +
         scale_y_continuous()+
         scale_x_continuous()+
         theme(text = element_text(size = 16)) +
@@ -46,7 +46,7 @@ shinyServer(function(input, output) {
     output$bvPlot2 <- renderPlot({
       
       ggplot(data(), aes(x = !!input$BV_selection2_1, !!input$BV_selection2_2)) +
-        theme_classic() + geom_line() +
+        theme_classic() + geom_point() +
         scale_y_continuous()+
         scale_x_continuous()+
         theme(text = element_text(size = 16)) +
@@ -59,7 +59,7 @@ shinyServer(function(input, output) {
     output$bvPlot3 <- renderPlot({
       
       ggplot(data(), aes(x = !!input$BV_selection3_1, !!input$BV_selection3_2)) +
-        theme_classic() + geom_line() +
+        theme_classic() + geom_point() +
         scale_y_continuous()+
         scale_x_continuous()+
         theme(text = element_text(size = 16)) +
@@ -72,7 +72,7 @@ shinyServer(function(input, output) {
     output$bvPlot4 <- renderPlot({
       
       ggplot(data(), aes(x = !!input$BV_selection4_1, !!input$BV_selection4_2)) +
-        theme_classic() + geom_line() +
+        theme_classic() + geom_point() +
         scale_y_continuous()+
         scale_x_continuous()+
         theme(text = element_text(size = 16)) +
