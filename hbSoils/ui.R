@@ -30,6 +30,7 @@ shinyUI(fluidPage(
                tabPanel("About",
                         h2("About the App"),
                         fluidRow(
+                          tags$h4('Created by Liam Hickam, Nate Davidson, Sabrina Crqueira, and Truffaut Harper'),
                           tags$h4("This app visualizes terrestrial and aqautic data collected from the Hubbard
                                     Brook Experimental Forest through reactive visualizations. Users can manipulate 
                                   the data using various interactive elements found in both tabs."),
