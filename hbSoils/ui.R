@@ -30,7 +30,7 @@ shinyUI(fluidPage(
                tabPanel("About",
                         h2("About the App"),
                         fluidRow(
-                          tags$h4('Created by Liam Hickam, Nate Davidson, Sabrina Crqueira, and Truffaut Harper'),
+                          tags$h4('Created by Liam Hickam, Nate Davidson, Sabrina Cerqueira, and Truffaut Harper'),
                           tags$h4("This app visualizes terrestrial and aqautic data collected from the Hubbard
                                     Brook Experimental Forest through reactive visualizations. Users can manipulate 
                                   the data using various interactive elements found in both tabs."),
@@ -216,7 +216,7 @@ shinyUI(fluidPage(
                           sidebarPanel(
                             dateRangeInput("dateRange", "Desired Date Range",
                                            start = "2012-11-1",
-                                           end = "2015-11-1"),
+                                           end = "2019-11-21"),
                             #Smoothing line option adding
                             checkboxInput("smoothingadd", "Add smoothing line", FALSE),
                   

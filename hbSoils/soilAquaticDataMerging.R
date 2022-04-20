@@ -3,73 +3,23 @@ library(tidyverse)
 library(ggplot2)
 library(lubridate)
 
-##Aquatic Data
-#Temperature
-temperatureRawData <- read_csv("data_raw/HBF Temperature.csv")
+#Read in aquatic data
+aquatic_updated_raw <- read.csv("data_raw/UpdatedWater.csv")
 
-#Spectral Conductivity 
-spectralConductivityRaw <- read_csv("data_raw/HBF Spec Cond.csv")
+#Grab specific columns we need
+aquatic_updated <- aquatic_updated_raw %>% select(Date, TempC, SpConductivity,
+                                                  NO3_corrected, FDOM_corrected_QSU, Q)
 
-#Nitrate 
-nitrateDataRaw <- read_csv("data_raw/HBF Nitrate.csv")
-
-#Fluorescent dissolved Organic Matter
-fluorescentDataRaw <- read_csv("data_raw/HBF fDOM.csv")
-
-#Water Discharge
-dischargeDataRaw <- read_csv("data_raw/HBF Discharge Storm ID.csv")
-
-#Data Loaded.
+#Character to date
+aquatic_updated$Date <- as.POSIXct(aquatic_updated$Date, format = "%m/%d/%Y %H:%M")
 
 
-###CLEANING EACH SPECIFIC DATASET###
-
-#Cleaning each to select necessary columns, mutating given dates from character
-#To posix to make graphing possible.
-
-
-#Cleaning for temperature Data
-clean_temperature_data <- temperatureRawData %>% mutate(date = mdy_hm(Date.Time.EST)) %>%
-  select(date, TempC)
-
-#Cleaning for Spectral Conductivity Data
-clean_spectral_data <- spectralConductivityRaw %>% mutate(date = mdy_hm(Date.Time.EST)) %>%
-  select(date, SpConductivity)
-
-#Cleaning for Nitrate Data
-clean_nitrate_data <- nitrateDataRaw %>% mutate(date = mdy_hm(Date.Time.EST)) %>%
-  select(date, NO3_corrected_mgL)
-
-#Cleaning for Fluorescent data 
-
-clean_fluorescent_data <- fluorescentDataRaw %>% mutate(date = mdy_hm(Date.Time.EST)) %>%
-  select(date, FDOM_corrected_QSU)
-
-#Cleaning for Water Discharge
-
-clean_discharge_data <- dischargeDataRaw %>% mutate(date = mdy_hm(Date.Time.EST)) %>%
-  select(date, Q_Ls)
-
-##Create one dataframe for all by date##
-
-###MERGE ALL CLEAN SPECIFIC DATASETS
-clean_df_list <- list(clean_temperature_data, clean_spectral_data, clean_nitrate_data,
-                      clean_fluorescent_data, clean_discharge_data)
-
-
-#full join all datasets by date column
-allCleanData <- clean_df_list %>% reduce(full_join, by = "date")
-
-hourly_water_data <- allCleanData %>% group_by(year = year(date), month = month(date),
-                                               day = day(date), hour = hour(date)) %>%
-  summarise(across(c(TempC, SpConductivity, NO3_corrected_mgL, FDOM_corrected_QSU, Q_Ls), mean)) %>%
+#Averaged Hourly Data for updated aquatic (new Aquatic data)
+updated_hourly_water <- aquatic_updated %>% group_by(year = year(Date), month = month(Date),
+                                                     day = day(Date), hour = hour(Date)) %>%
+  summarise(across(c(TempC, SpConductivity, NO3_corrected, FDOM_corrected_QSU, Q), mean)) %>%
   ungroup() %>% mutate(date = mdy_h(paste(month, day, year, hour))) %>% select(-c(month,day,year,hour)) %>%
-  select(date, TempC, SpConductivity, NO3_corrected_mgL, FDOM_corrected_QSU, Q_Ls)
-
-
-
-
-
+  select(date, TempC, SpConductivity, NO3_corrected, FDOM_corrected_QSU, Q)
 
 
 
@@ -96,13 +46,17 @@ master_soil <- data %>%
 
 
 
+
+
+
+
 ###Merge data
 
 
 time_drop_soil <- master_soil %>% mutate(date = floor_date(timeSeries, unit = "hour"))
 
 
-merged_clean_data <- full_join(time_drop_soil, hourly_water_data, by = "date")
+merged_clean_data <- full_join(time_drop_soil, updated_hourly_water, by = "date")
 
 merged_clean_data <- merged_clean_data %>% select(-c(timeSeries))
 
@@ -116,9 +70,9 @@ merged_clean_data <- merged_clean_data %>% rename( Soil_Moisture_at_15cm = Soil_
                                                   Air_Temp_at_150cm = Air_Temp_150cm,
                                                   Stream_Temp_Celcius = TempC,
                                                   Stream_Specific_Conductance = SpConductivity,
-                                                  Stream_NO3_mgL = NO3_corrected_mgL,
+                                                  Stream_NO3_mgL = NO3_corrected,
                                                   Stream_FDOM_QSU = FDOM_corrected_QSU,
-                                                  Stream_Discharge_L = Q_Ls,
+                                                  Stream_Discharge_L = Q,
                                                   )
 
 
