@@ -82,6 +82,7 @@ shinyUI(fluidPage(
                                            
                             ),
                             checkboxInput("BVmulti1", "BVPlot 2", FALSE),
+                            ## conditional panels to display only selected plots
                             conditionalPanel(condition = "input.BVmulti1 == 1",
                                              varSelectInput("BV_selection2_1", "Bivarate Variable 1", merged_clean_data %>% select(Soil_Moisture_at_5cm,
                                                                                                                                    Soil_Moisture_at_15cm,
@@ -115,6 +116,7 @@ shinyUI(fluidPage(
                                                                                                                                    Stream_Discharge_L)
                                                             
                                              )),
+                            ## conditional panels to display only selected plots
                             conditionalPanel(condition = "input.BVmulti3 == 1 || input.BVmulti2 == 1 || input.BVmulti1 == 1",
                                              checkboxInput("BVmulti2", "BVPlot 3", FALSE),),
                             conditionalPanel(condition = "input.BVmulti2 == 1",
@@ -150,6 +152,7 @@ shinyUI(fluidPage(
                                                                                                                                    Stream_Discharge_L)
                                                             
                                              ),),
+                            ## conditional panels to display only selected plots
                             conditionalPanel(condition = "input.BVmulti3 == 1 || input.BVmulti2 == 1",
                                              checkboxInput("BVmulti3", "BVPlot 4", FALSE),),
                             conditionalPanel(condition = "input.BVmulti3 == 1 || input.BVmulti4 == 1",
