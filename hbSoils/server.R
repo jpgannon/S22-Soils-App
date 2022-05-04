@@ -10,17 +10,25 @@
 # Define server logic required to draw a histogram
 shinyServer(function(input, output) {
 
+  
+#####SETTING REACTIVE VALUES#####  
+
     #Set reactive date range.
     ranges <- reactiveValues(x = c("2012-10-11", "2020-11-30"))
   
-  
-  
-  
+
     #Reactive data for updating between certain dates
     data <- reactive(
       merged_clean_data %>% filter(between(date, as.POSIXct(input$dateRange[1]),
                        as.POSIXct(input$dateRange[2])))
     )  
+    
+    
+    
+    
+    
+####START OF GRAPHS####
+    
     #Output multiple plots
     output$multiplot <- renderPlot({
       ggplot(data(), aes(x = date, !!input$selection)) +
@@ -28,6 +36,7 @@ shinyServer(function(input, output) {
                                              title = "")
         
     })
+
     
     #Output Bivariate plot for any selected variable
     output$bvPlot <- renderPlot({
@@ -42,7 +51,10 @@ shinyServer(function(input, output) {
                         aes(label = paste(..eq.label.., ..rr.label.., sep = "~~~")), 
                         parse = TRUE, color = 'blue')}
     })
-    #Output Bivariate plot for any selected variable
+
+    
+    
+    #Output Bivariate plot 2 for any selected variable
     output$bvPlot2 <- renderPlot({
       
       ggplot(data(), aes(x = !!input$BV_selection2_1, !!input$BV_selection2_2)) +
@@ -55,9 +67,11 @@ shinyServer(function(input, output) {
                                          aes(label = paste(..eq.label.., ..rr.label.., sep = "~~~")), 
                                          parse = TRUE, color = 'blue')}
     })
-    #Output Bivariate plot for any selected variable
+    
+
+    
+    #Output Bivariate plot 3 for any selected variable
     output$bvPlot3 <- renderPlot({
-      
       ggplot(data(), aes(x = !!input$BV_selection3_1, !!input$BV_selection3_2)) +
         theme_classic() + geom_point() +
         scale_y_continuous()+
@@ -68,9 +82,11 @@ shinyServer(function(input, output) {
                                          aes(label = paste(..eq.label.., ..rr.label.., sep = "~~~")), 
                                          parse = TRUE, color = 'blue')}
     })
-    #Output Bivariate plot for any selected variable
+    
+    
+    
+    #Output Bivariate plot 4 for any selected variable
     output$bvPlot4 <- renderPlot({
-      
       ggplot(data(), aes(x = !!input$BV_selection4_1, !!input$BV_selection4_2)) +
         theme_classic() + geom_point() +
         scale_y_continuous()+
@@ -82,6 +98,8 @@ shinyServer(function(input, output) {
                                          parse = TRUE, color = 'blue')}
     })
   
+    
+    
     #Output plot for any selected variable
     output$timePlot <- renderPlot({
       ggplot(data(), aes(x = date, !!input$selection)) +
@@ -91,7 +109,9 @@ shinyServer(function(input, output) {
         {if(input$smoothingadd)geom_smooth()} 
     }, res = 80)
     
-    #Output plot for second selected variable
+    
+    
+    #Output plot 2 for second selected variable
     output$timePlot2 <- renderPlot({
       ggplot(data(), aes(x = date, !!input$selection2)) +
         theme_classic() + geom_line() +
@@ -100,7 +120,9 @@ shinyServer(function(input, output) {
         {if(input$smoothingadd)geom_smooth()}
       }, res = 80)
     
-    #Output plot for third selected variable
+    
+    
+    #Output plot 3 for third selected variable
     output$timePlot3 <- renderPlot({
       ggplot(data(), aes(x = date, !!input$selection3)) +
         theme_classic() + geom_line() +
@@ -108,6 +130,8 @@ shinyServer(function(input, output) {
         theme(text = element_text(size = 16), axis.title.x=element_blank(), axis.text.y = element_text(angle=90, vjust=1, hjust=1))  +
         {if(input$smoothingadd)geom_smooth()}
       }, res = 80)
+    
+    
     
     #Output plot for fourth selected variable
     output$timePlot4 <- renderPlot({
@@ -118,7 +142,10 @@ shinyServer(function(input, output) {
         {if(input$smoothingadd)geom_smooth()}
       }, res = 80)
     
-    ##HANDLE BRUSHING
+    
+    
+ 
+    #####HANDLE BRUSHING####
     observeEvent(input$plot1_dblclick, {
       brush = input$plot1_brush
       
