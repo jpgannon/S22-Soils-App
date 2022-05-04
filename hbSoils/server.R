@@ -146,6 +146,8 @@ shinyServer(function(input, output) {
     
  
     #####HANDLE BRUSHING####
+    
+    
     observeEvent(input$plot1_dblclick, {
       brush = input$plot1_brush
       

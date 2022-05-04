@@ -1,4 +1,4 @@
-##Librarys
+##Librarys and loading necessary packages
 library(tidyverse)
 library(ggplot2)
 library(lubridate)
@@ -10,7 +10,7 @@ aquatic_updated_raw <- read.csv("data_raw/UpdatedWater.csv")
 aquatic_updated <- aquatic_updated_raw %>% select(Date, TempC, SpConductivity,
                                                   NO3_corrected, FDOM_corrected_QSU, Q)
 
-#Character to date
+#Character to date format
 aquatic_updated$Date <- as.POSIXct(aquatic_updated$Date, format = "%m/%d/%Y %H:%M")
 
 

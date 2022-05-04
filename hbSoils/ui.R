@@ -43,12 +43,16 @@ shinyUI(fluidPage(
                                   All plots are reactive with the ability to change the variables.'),
                )),
                
+               
+               ###START OF BIVARIATE TAB###
                tabPanel("Bivariate",
                         h2("Bivariate Tab"),
+                        #Start of sidepanel for bivariate
                         sidebarLayout(
                           sidebarPanel(
                             #Option to show linear model.
                             checkboxInput("linearadd", "Show linear model", FALSE),
+                            #First variable checkbox
                             varSelectInput("BV_selection1", "Bivarate Variable 1", merged_clean_data %>% select(Soil_Moisture_at_5cm,
                                                                                                                  Soil_Moisture_at_15cm,
                                                                                                                  Soil_Moisture_at_30cm,
@@ -65,6 +69,7 @@ shinyUI(fluidPage(
                                                                                                                  Stream_Discharge_L)
                                            
                             ),
+                            #Second Variable checkbox
                             varSelectInput("BV_selection2", "Bivarate Variable 2", merged_clean_data %>% select(Soil_Moisture_at_5cm,
                                                                                                Soil_Moisture_at_15cm,
                                                                                                Soil_Moisture_at_30cm,
@@ -81,6 +86,7 @@ shinyUI(fluidPage(
                                                                                                Stream_Discharge_L)
                                            
                             ),
+                            #Checkbox for selecting to add a second graph onto page
                             checkboxInput("BVmulti1", "BVPlot 2", FALSE),
                             ## conditional panels to display only selected plots
                             conditionalPanel(condition = "input.BVmulti1 == 1",
@@ -213,6 +219,7 @@ shinyUI(fluidPage(
                         
                         
                ),
+               ###START OF TIMESERIES TAB###
                tabPanel("Timeseries",
                         h2("Timeseries Tab"),
                         sidebarLayout(
@@ -290,7 +297,7 @@ shinyUI(fluidPage(
                             conditionalPanel(condition = "input.multiplots2 == 1 || input.multiplots3 == 1 || input.multiplots2 == 1",
                                              checkboxInput("multiplots3", "Plot 4", FALSE),),
                               
-                              
+                            #Configure if third plot is visible
                             conditionalPanel(
                               condition = "input.multiplots3 == 1",
                               varSelectInput("selection4", "", merged_clean_data %>% select(Soil_Moisture_at_5cm,
