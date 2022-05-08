@@ -26,8 +26,9 @@ updated_hourly_water <- aquatic_updated %>% group_by(year = year(Date), month = 
 ##CO2 Cleaning Data
 data_raw <- read_csv("data_raw/Hubbard_Brook_CO2_Fluxes.csv")
 
+#Select all necessary rows
 data <- data_raw[0:28669, ]
-## data frame with all soil measurements
+## data frame with all soil measurements, mutate new date column and select necessary columns and then rename.
 master_soil <- data %>% 
   mutate(timeSeries = ymd_hms(TIMESTAMP)) %>%
   select(timeSeries, VWC1_Chamber, VWC2_Chamber, VWC3_Chamber,
@@ -53,13 +54,17 @@ master_soil <- data %>%
 ###Merge data
 
 
+#Floor the soil data to nearest hour (was only 2 minutes from it)
 time_drop_soil <- master_soil %>% mutate(date = floor_date(timeSeries, unit = "hour"))
 
 
+#Full join all data from soil and aquatic datasets by same date
 merged_clean_data <- full_join(time_drop_soil, updated_hourly_water, by = "date")
 
+#Get rid of timeseries column
 merged_clean_data <- merged_clean_data %>% select(-c(timeSeries))
 
+#Rename all columns in the new merged dataset
 merged_clean_data <- merged_clean_data %>% rename( Soil_Moisture_at_15cm = Soil_Moisture_15cm,
                                                    Soil_Moisture_at_30cm = Soil_Moisture_30cm,
                                                    Soil_Moisture_at_5cm = Soil_Moisture_5cm,

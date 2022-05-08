@@ -7,9 +7,9 @@
 #
 #    http://shiny.rstudio.com/
 #
-#This is a test.
-#add lines
 
+
+#Load necessary packages
 library(shiny)
 library(shinythemes)
 library(shinydashboard)
@@ -18,6 +18,7 @@ library(ggplot2)
 library(tidyverse)
 library(ggpmisc)
 
+###MAIN DATA CLEANING SCRIPT###
 source("soilAquaticDataMerging.R")
 
 shinyUI(fluidPage(
